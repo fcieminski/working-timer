@@ -1,0 +1,23 @@
+.main {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.navbar {
+  width: 100%;
+  border-bottom: 1px solid black;
+  &__menu {
+    max-width: 1000px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    margin: 0 auto;
+  }
+}
+
+.menu__element {
+  margin: 0;
+  padding-right: 20px;
+  align-self: center;
+}
