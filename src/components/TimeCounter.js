@@ -8,10 +8,18 @@ function TimeCounter() {
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setBreak] = useState(false);
+  const [workTime, setTimer] = useState(0);
 
   const submitTask = event => {
     event.preventDefault();
     setCurrent([{ title, description }]);
+
+    const timer = setInterval(() => {
+      console.log(time);
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(timer);
+    }, time * 60000);
     setStart(true);
     setTitle("");
     setDescription("");
@@ -72,6 +80,7 @@ function TimeCounter() {
                 </p>
               </div>
             ))}
+            <p>{workTime}</p>
             <div className="progress">
               <div className="progress__inside" />
             </div>
