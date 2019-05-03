@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "./Header";
+import TimeCounter from "./TimeCounter";
 
 function MainScreen() {
   return (
     <div>
       <Header />
       <div className="main">
-        <h1>Hello!</h1>
+        <TimeCounter />
       </div>
     </div>
   );

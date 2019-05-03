@@ -15,9 +15,87 @@
     margin: 0 auto;
   }
 }
-
 .menu__element {
   margin: 0;
   padding-right: 20px;
   align-self: center;
+}
+
+.timer {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.inputs {
+  &__group {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  &__input {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+  }
+  &__input--long {
+    width: 200px;
+  }
+  &__input--textarea {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+  }
+}
+
+.buttons__btn {
+  background-color: rgb(235, 235, 235);
+  border: 1px solid rgb(141, 141, 141);
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  &--red {
+    background-color: red;
+    color: white;
+  }
+  &--green {
+    background-color: green;
+    color: white;
+  }
+}
+
+.tasks {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 30px;
+  &__current {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+.current__info {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+.progress {
+  width: 300px;
+  height: 20px;
+  background-color: rgb(212, 212, 212);
+  &__inside {
+    background-color: green;
+    width: 10px;
+    height: 100%;
+  }
 }
