@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("00");
   const [description, setDescription] = useState("");
+  const [current, setCurrent] = useState([]);
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setBreak] = useState(false);
+
+  useEffect(() => {
+    setCurrent({ title, description, minutes, seconds });
+    console.log("render");
+  }, [title, description, minutes, seconds]);
 
   const submitTask = event => {
     event.preventDefault();
@@ -20,6 +26,7 @@ function TimeCounter() {
     let sec = minutes - min * 60;
     console.log(min);
     console.log(sec);
+    console.log(current);
   };
 
   return (
