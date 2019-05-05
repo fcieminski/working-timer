@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState([]);
   const [description, setDescription] = useState("");
   const [current, setCurrent] = useState([]);
   const [start, setStart] = useState(false);
@@ -11,15 +11,17 @@ function TimeCounter() {
 
   const submitTask = event => {
     event.preventDefault();
-    setCurrent([{ title, description }]);
-
+    setCurrent([{ title, description, time }]);
     setStart(true);
     setTitle("");
     setDescription("");
     setTime(0);
   };
 
-  const timer = () => {};
+  const timer = () => {
+    let min = Math.floor(this.secondsRemaining / 60);
+    let sec = this.secondsRemaining - min * 60;
+  };
 
   return (
     <div>
@@ -39,9 +41,11 @@ function TimeCounter() {
               className="inputs__input"
               placeholder="Time"
               name="time"
-              value={time}
+              value={time.minutes}
               required
-              onChange={event => setTime(event.target.value)}
+              onChange={event =>
+                setTime({ minutes: event.target.value, seconds: "00" })
+              }
             />
           </div>
           <input
@@ -73,9 +77,11 @@ function TimeCounter() {
                 <p className="current__info">
                   {element.description.substr(0, 50).trim()}
                 </p>
+                <p>
+                  {element.time.minutes}:{element.time.seconds}
+                </p>
               </div>
             ))}
-
             <div className="progress">
               <div className="progress__inside" />
             </div>
