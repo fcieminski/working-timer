@@ -83,6 +83,7 @@ function TimeCounter() {
             <div className="progress">
               <div className="progress__inside" />
             </div>
+            <button onClick={() => setStart(false)}>X</button>
           </div>
         )}
       </div>
