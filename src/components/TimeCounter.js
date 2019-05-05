@@ -2,31 +2,46 @@ import React, { useState, useEffect } from "react";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
-  const [minutes, setMinutes] = useState("");
-  const [seconds, setSeconds] = useState("00");
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const [description, setDescription] = useState("");
   const [current, setCurrent] = useState([]);
+  const [remaning, setRemaning] = useState(0);
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setBreak] = useState(false);
 
   useEffect(() => {
     setCurrent({ title, description, minutes, seconds });
-    console.log("render");
+    setRemaning(minutes);
   }, [title, description, minutes, seconds]);
+
+  useEffect(() => {
+    if (start === true) {
+      let countDown = setInterval(() => timer(), 1000);
+      if ((minutes === 0) & (seconds === 0)) {
+        return () => clearInterval(countDown);
+      }
+    }
+  }, [!start]);
 
   const submitTask = event => {
     event.preventDefault();
     setStart(true);
-    timer();
   };
 
   const timer = () => {
-    let min = Math.floor(minutes / 60);
-    let sec = minutes - min * 60;
-    console.log(min);
-    console.log(sec);
-    console.log(current);
+    let min = Math.floor(remaning / 60);
+    let sec = remaning - min * 60;
+    setMinutes(min);
+    setSeconds(sec);
+    if (sec < 10) {
+      setSeconds("0" + sec);
+    }
+    if (min < 10) {
+      setMinutes("0" + min);
+    }
+    setRemaning(remaning - 1);
   };
 
   return (
