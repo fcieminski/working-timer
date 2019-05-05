@@ -2,25 +2,24 @@ import React, { useState } from "react";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
-  const [time, setTime] = useState([]);
+  const [minutes, setMinutes] = useState("");
+  const [seconds, setSeconds] = useState("00");
   const [description, setDescription] = useState("");
-  const [current, setCurrent] = useState([]);
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setBreak] = useState(false);
 
   const submitTask = event => {
     event.preventDefault();
-    setCurrent([{ title, description, time }]);
     setStart(true);
-    setTitle("");
-    setDescription("");
-    setTime(0);
+    timer();
   };
 
   const timer = () => {
-    let min = Math.floor(this.secondsRemaining / 60);
-    let sec = this.secondsRemaining - min * 60;
+    let min = Math.floor(minutes / 60);
+    let sec = minutes - min * 60;
+    console.log(min);
+    console.log(sec);
   };
 
   return (
@@ -35,17 +34,17 @@ function TimeCounter() {
               name="title"
               value={title}
               required
+              disabled={start && true}
               onChange={event => setTitle(event.target.value)}
             />
             <input
               className="inputs__input"
               placeholder="Time"
               name="time"
-              value={time.minutes}
+              value={minutes}
               required
-              onChange={event =>
-                setTime({ minutes: event.target.value, seconds: "00" })
-              }
+              disabled={start && true}
+              onChange={event => setMinutes(event.target.value)}
             />
           </div>
           <input
@@ -55,6 +54,7 @@ function TimeCounter() {
             name="description"
             value={description}
             required
+            disabled={start && true}
             onChange={event => setDescription(event.target.value)}
           />
         </div>
@@ -71,17 +71,15 @@ function TimeCounter() {
       <div className="tasks">
         {start && (
           <div className="tasks__current">
-            {current.map(element => (
-              <div>
-                <p className="current__info">{element.title}</p>
-                <p className="current__info">
-                  {element.description.substr(0, 50).trim()}
-                </p>
-                <p>
-                  {element.time.minutes}:{element.time.seconds}
-                </p>
-              </div>
-            ))}
+            <div>
+              <p className="current__info">{title}</p>
+              <p className="current__info">
+                {description.substr(0, 50).trim()}
+              </p>
+              <p>
+                {minutes}:{seconds}
+              </p>
+            </div>
             <div className="progress">
               <div className="progress__inside" />
             </div>
