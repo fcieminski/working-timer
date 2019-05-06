@@ -4,17 +4,16 @@ function TimeCounter() {
   const [title, setTitle] = useState("");
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [hours, setHours] = useState(0);
   const [description, setDescription] = useState("");
-  const [current, setCurrent] = useState([]);
-  const [remaning, setRemaning] = useState(0);
+  // const [current, setCurrent] = useState([]);
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setBreak] = useState(false);
 
-  useEffect(() => {
-    setCurrent({ title, description, minutes, seconds });
-    setRemaning(minutes);
-  }, [title, description, minutes, seconds]);
+  // useEffect(() => {
+  //   setCurrent({ title, description, minutes, seconds, hours });
+  // }, [title, description]);
 
   useEffect(() => {
     let interval;
@@ -29,16 +28,32 @@ function TimeCounter() {
           }
           return 0;
         });
+        if (seconds === 0 && minutes === 0 && hours === 0) {
+          setStart(false);
+          clearInterval(interval);
+        }
       }, 1000);
     }
     let subtractMinute = () => {
       setMinutes(prevMinutes => {
         if (prevMinutes === 0) {
+          subtractHour();
           return 59;
         } else if (prevMinutes > 0) {
           return prevMinutes - 1;
         }
         return 0;
+      });
+    };
+    let subtractHour = () => {
+      setHours(prevHour => {
+        if (prevHour > 0) {
+          return prevHour - 1;
+        }
+        clearInterval(interval);
+        setSeconds(0);
+        setMinutes(0);
+        setHours(0);
       });
     };
     return () => clearInterval(interval);
@@ -74,10 +89,28 @@ function TimeCounter() {
               className="inputs__input"
               placeholder="Time"
               name="time"
+              value={hours}
+              required
+              disabled={start && true}
+              onChange={event => setHours(event.target.value)}
+            />
+            <input
+              className="inputs__input"
+              placeholder="Time"
+              name="time"
               value={minutes}
               required
               disabled={start && true}
               onChange={event => setMinutes(event.target.value)}
+            />
+            <input
+              className="inputs__input"
+              placeholder="Time"
+              name="time"
+              value={seconds}
+              required
+              disabled={start && true}
+              onChange={event => setSeconds(event.target.value)}
             />
           </div>
           <input
@@ -110,7 +143,7 @@ function TimeCounter() {
                 {description.substr(0, 50).trim()}
               </p>
               <p>
-                {minutes}:{seconds}
+                {hours}:{minutes}:{seconds}
               </p>
             </div>
             <div className="progress">
