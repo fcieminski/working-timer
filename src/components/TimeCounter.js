@@ -17,31 +17,42 @@ function TimeCounter() {
   }, [title, description, minutes, seconds]);
 
   useEffect(() => {
-    if (start === true) {
-      let countDown = setInterval(() => timer(), 1000);
-      if ((minutes === 0) & (seconds === 0)) {
-        return () => clearInterval(countDown);
-      }
+    let interval;
+    if (start) {
+      interval = setInterval(() => {
+        setSeconds(prevSeconds => {
+          if (prevSeconds === 0) {
+            subtractMinute();
+            return 59;
+          } else if (prevSeconds > 0) {
+            return prevSeconds - 1;
+          }
+          return 0;
+        });
+      }, 1000);
     }
-  }, [!start]);
+    let subtractMinute = () => {
+      setMinutes(prevMinutes => {
+        if (prevMinutes === 0) {
+          return 59;
+        } else if (prevMinutes > 0) {
+          return prevMinutes - 1;
+        }
+        return 0;
+      });
+    };
+    return () => clearInterval(interval);
+  }, [start]);
+
+  const resetTimer = () => {
+    setStart(false);
+    setMinutes(0);
+    setSeconds(0);
+  };
 
   const submitTask = event => {
     event.preventDefault();
     setStart(true);
-  };
-
-  const timer = () => {
-    let min = Math.floor(remaning / 60);
-    let sec = remaning - min * 60;
-    setMinutes(min);
-    setSeconds(sec);
-    if (sec < 10) {
-      setSeconds("0" + sec);
-    }
-    if (min < 10) {
-      setMinutes("0" + min);
-    }
-    setRemaning(remaning - 1);
   };
 
   return (
@@ -105,7 +116,7 @@ function TimeCounter() {
             <div className="progress">
               <div className="progress__inside" />
             </div>
-            <button onClick={() => setStart(false)}>X</button>
+            <button onClick={resetTimer}>X</button>
           </div>
         )}
       </div>
