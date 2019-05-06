@@ -82,6 +82,9 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    &--red {
+      background-color: red;
+    }
   }
 }
 .current__info {

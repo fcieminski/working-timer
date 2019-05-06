@@ -28,10 +28,6 @@ function TimeCounter() {
           }
           return 0;
         });
-        if (seconds === 0 && minutes === 0 && hours === 0) {
-          setStart(false);
-          clearInterval(interval);
-        }
       }, 1000);
     }
     let subtractMinute = () => {
@@ -61,8 +57,11 @@ function TimeCounter() {
 
   const resetTimer = () => {
     setStart(false);
+    setTitle("");
+    setDescription("");
     setMinutes(0);
     setSeconds(0);
+    setHours(0);
   };
 
   const submitTask = event => {
@@ -87,30 +86,36 @@ function TimeCounter() {
             />
             <input
               className="inputs__input"
-              placeholder="Time"
+              placeholder="Hours"
               name="time"
-              value={hours}
+              type="number"
+              min="0"
+              max="8"
               required
               disabled={start && true}
-              onChange={event => setHours(event.target.value)}
+              onChange={event => setHours(+event.target.value)}
             />
             <input
               className="inputs__input"
-              placeholder="Time"
+              placeholder="Minutes"
               name="time"
-              value={minutes}
+              type="number"
+              min="0"
+              max="59"
               required
               disabled={start && true}
-              onChange={event => setMinutes(event.target.value)}
+              onChange={event => setMinutes(+event.target.value)}
             />
             <input
               className="inputs__input"
-              placeholder="Time"
+              placeholder="Seconds"
               name="time"
-              value={seconds}
+              type="number"
+              min="0"
+              max="59"
               required
               disabled={start && true}
-              onChange={event => setSeconds(event.target.value)}
+              onChange={event => setSeconds(+event.target.value)}
             />
           </div>
           <input
@@ -125,18 +130,26 @@ function TimeCounter() {
           />
         </div>
         <div className="timer__buttons">
-          <button className="buttons__btn">Break</button>
           <div>
-            <button type="submit" className="buttons__btn buttons__btn--green">
+            <button
+              type="submit"
+              disabled={start && true}
+              className="buttons__btn buttons__btn--green"
+            >
               Start
             </button>
-            <button className="buttons__btn buttons__btn--red">Stop</button>
           </div>
         </div>
       </form>
       <div className="tasks">
         {start && (
-          <div className="tasks__current">
+          <div
+            className={`tasks__current ${
+              hours === 0 && minutes === 0 && seconds > 5
+                ? ""
+                : "tasks__current--red"
+            }`}
+          >
             <div>
               <p className="current__info">{title}</p>
               <p className="current__info">
@@ -145,9 +158,6 @@ function TimeCounter() {
               <p>
                 {hours}:{minutes}:{seconds}
               </p>
-            </div>
-            <div className="progress">
-              <div className="progress__inside" />
             </div>
             <button onClick={resetTimer}>X</button>
           </div>
