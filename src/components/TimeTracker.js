@@ -3,69 +3,69 @@ import React, { useState } from "react";
 function TimeTracker() {
   return (
     <div>
-      <div>
-        <div>
-          <div>
+      <div className="calendar">
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
+        </div>
+        <div className="calendar__box">
+          <div className="box__date">
+            <h2>Date</h2>
+            <p>Info</p>
+          </div>
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>{" "}
-        <div>
-          <div>
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>{" "}
-        <div>
-          <div>
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>{" "}
-        <div>
-          <div>
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>{" "}
-        <div>
-          <div>
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>{" "}
-        <div>
-          <div>
+        <div className="calendar__box">
+          <div className="box__date">
             <h2>Date</h2>
             <p>Info</p>
           </div>
-          <input />
-          <input />
-          <input />
-        </div>{" "}
-        <div>
-          <div>
-            <h2>Date</h2>
-            <p>Info</p>
-          </div>
-          <input />
-          <input />
-          <input />
+          <input className="box__input" />
+          <input className="box__input" />
+          <input className="box__input" />
         </div>
       </div>
     </div>

@@ -92,13 +92,24 @@
   display: inline-block;
 }
 
-.progress {
-  width: 300px;
-  height: 20px;
-  background-color: rgb(212, 212, 212);
-  &__inside {
-    background-color: green;
-    width: 10px;
-    height: 100%;
+.calendar {
+  display: flex;
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    border: 1px solid black;
   }
+}
+
+.box__date {
+  width: 100px;
+  text-align: center;
+  margin: 10px auto 10px auto;
+  border: 1px solid black;
+}
+
+.box__input {
+  width: 70%;
 }
