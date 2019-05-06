@@ -8,8 +8,6 @@ function TimeCounter() {
   const [description, setDescription] = useState("");
   // const [current, setCurrent] = useState([]);
   const [start, setStart] = useState(false);
-  const [stop, setStop] = useState(false);
-  const [pause, setBreak] = useState(false);
 
   // useEffect(() => {
   //   setCurrent({ title, description, minutes, seconds, hours });
