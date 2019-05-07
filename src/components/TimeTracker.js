@@ -1,30 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
-
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
 
 function TimeTracker() {
   let dates = [];
   for (let i = 1; i <= 7; i++) {
     let days = moment()
       .isoWeekday(i)
-      .format("MMM Do dddd");
-    const newCell = <div key={i}>{days}</div>;
+      .format("Do");
+    let date = moment()
+      .isoWeekday(i)
+      .format("dddd");
+    const newCell = (
+      <div
+        className={`head__date ${
+          moment()
+            .isoWeekday(i)
+            ._d.toLocaleString() === new Date().toLocaleString()
+            ? "head__date--today"
+            : ""
+        }`}
+        key={i}
+      >
+        <h2>{days}</h2>
+        <p>{date}</p>
+      </div>
+    );
     dates.push(newCell);
   }
 
   return (
     <div>
       <div className="calendar">
-        <div>{dates}</div>
+        <div className="calendar__head">{dates}</div>
       </div>
     </div>
   );

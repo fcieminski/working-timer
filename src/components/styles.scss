@@ -94,12 +94,18 @@
 
 .calendar {
   display: flex;
-  &__box {
+  justify-content: center;
+  &__head {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px;
-    border: 1px solid black;
+    .head__date {
+      width: 7rem;
+      margin: 10px;
+      text-align: center;
+      &--today {
+        background-color: green;
+        color: white;
+      }
+    }
   }
 }
 
