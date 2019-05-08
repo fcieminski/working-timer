@@ -43,6 +43,15 @@
     width: 100px;
     height: 50px;
     padding: 10px;
+    &--time {
+      height: 30px;
+      padding: 5px;
+      margin: 5px;
+      font-size: 0.6rem;
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      appearance: none;
+    }
   }
   &__input--long {
     width: 200px;
