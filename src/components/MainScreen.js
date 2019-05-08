@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import TimeCounter from "./TimeCounter";
 import TimeTracker from "./TimeTracker";
+import WorkCountdown from "./WorkCountdown";
 
 const MainScreen = () => {
   return (
@@ -10,6 +11,7 @@ const MainScreen = () => {
       <div className="main">
         <TimeCounter />
         <TimeTracker />
+        <WorkCountdown />
       </div>
     </div>
   );
