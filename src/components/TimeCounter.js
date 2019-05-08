@@ -6,16 +6,13 @@ function TimeCounter() {
   const [seconds, setSeconds] = useState(0);
   const [hours, setHours] = useState(0);
   const [description, setDescription] = useState("");
-  // const [current, setCurrent] = useState([]);
+  const [current, setCurrent] = useState({});
   const [start, setStart] = useState(false);
-
-  // useEffect(() => {
-  //   setCurrent({ title, description, minutes, seconds, hours });
-  // }, [title, description]);
 
   useEffect(() => {
     let interval;
     if (start) {
+      setCurrent({ hours, minutes, seconds, title, description });
       interval = setInterval(() => {
         setSeconds(prevSeconds => {
           if (prevSeconds === 0) {
@@ -52,6 +49,8 @@ function TimeCounter() {
     };
     return () => clearInterval(interval);
   }, [start]);
+
+  console.log(current);
 
   const resetTimer = () => {
     setStart(false);
