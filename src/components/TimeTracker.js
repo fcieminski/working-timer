@@ -27,21 +27,35 @@ function TimeTracker() {
         <p>{date}</p>
         <div className="head__inputs">
           <input
+            id={date}
             type="number"
             min="1"
             placeholder="Hours worked"
             className="inputs__input inputs__input--time"
             onChange={event =>
-              setWorkTime({ ...workTime, worked: event.target.value })
+              setWorkTime({
+                ...workTime,
+                worked: {
+                  ...workTime.worked,
+                  [event.target.id.toLowerCase()]: +event.target.value
+                }
+              })
             }
           />
           <input
+            id={date}
             type="number"
             min="1"
             placeholder="Estimated hours"
             className="inputs__input inputs__input--time"
             onChange={event =>
-              setWorkTime({ ...workTime, estimated: event.target.value })
+              setWorkTime({
+                ...workTime,
+                estimated: {
+                  ...workTime.estimated,
+                  [event.target.id.toLowerCase()]: +event.target.value
+                }
+              })
             }
           />
         </div>
@@ -50,12 +64,13 @@ function TimeTracker() {
     dates.push(newCell);
   }
 
-  console.log(workTime);
-
   return (
     <div>
       <div className="calendar">
         <div className="calendar__head">{dates}</div>
+        <div>
+          <button>Save</button>
+        </div>
       </div>
     </div>
   );
