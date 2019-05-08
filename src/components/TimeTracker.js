@@ -70,7 +70,7 @@ function TimeTracker() {
         <div className="calendar__head">{dates}</div>
         <div>
           <input
-            disabled="true"
+            disabled={true}
             value={
               Object.values(workTime.worked || {}).reduce(
                 (prev, curr) => prev + curr,
@@ -79,7 +79,7 @@ function TimeTracker() {
             }
           />
           <input
-            disabled="true"
+            disabled={true}
             value={
               Object.values(workTime.estimated || {}).reduce(
                 (prev, curr) => prev + curr,
