@@ -69,6 +69,24 @@ function TimeTracker() {
       <div className="calendar">
         <div className="calendar__head">{dates}</div>
         <div>
+          <input
+            disabled="true"
+            value={
+              Object.values(workTime.worked || {}).reduce(
+                (prev, curr) => prev + curr,
+                0
+              ) + "h"
+            }
+          />
+          <input
+            disabled="true"
+            value={
+              Object.values(workTime.estimated || {}).reduce(
+                (prev, curr) => prev + curr,
+                0
+              ) + "h"
+            }
+          />
           <button>Save</button>
         </div>
       </div>
