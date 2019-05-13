@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import heroimage from "../img/people.png";
+import { FiClock } from "react-icons/fi";
 import TimeCounter from "./TimeCounter";
 import TimeTracker from "./TimeTracker";
 import WorkCountdown from "./WorkCountdown";
@@ -31,7 +32,7 @@ const MainScreen = () => {
             <img src={heroimage} />
           </div>
         </section>
-        <div className="container__line" />
+
         <section className="main__container--features">
           <div className="features__box">
             <h2>hello heloo</h2>
