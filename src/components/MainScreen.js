@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import heroimage from "../img/people.png";
 import TimeCounter from "./TimeCounter";
 import TimeTracker from "./TimeTracker";
 import WorkCountdown from "./WorkCountdown";
@@ -14,7 +15,7 @@ const MainScreen = () => {
             <h1>Lorem import from "module";</h1>
           </div>
           <div className="container__heroimage">
-            <h1>Lorem import import from " sd";</h1>
+            <img src={heroimage} />
           </div>
         </section>
         <div className="container__line" />
