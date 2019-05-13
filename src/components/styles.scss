@@ -21,12 +21,43 @@ img {
   align-content: center;
 }
 .container__herotext {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: end;
+}
+
+.herotext {
+  &__h1 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+  }
+  &__paragraph {
+    font-size: 1.5rem;
+    margin: 0 0 20px 0;
+  }
+  &__links {
+    margin-top: 20px;
+  }
+}
+
+.links__link {
+  padding: 10px;
+  border: solid 1px black;
+  text-decoration: none;
+  color: white;
+  &--active {
+    margin-right: 15px;
+    color: green;
+    &:hover {
+      color: black;
+    }
+  }
 }
 
 .container__heroimage {
   text-align: center;
-  width: 100%;
 }
 
 .container__line {

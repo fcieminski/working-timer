@@ -12,7 +12,20 @@ const MainScreen = () => {
       <main className="main">
         <section className="main__container">
           <div className="container__herotext">
-            <h1>Lorem import from "module";</h1>
+            <h1 className="herotext__h1">
+              Timey pomoże Ci z Twoją produktywnością
+            </h1>
+            <p className="herotext__paragraph">
+              Timey to szybkie narzędzie do śledzenia czasu pracy
+            </p>
+            <div className="herotext__links">
+              <a className="links__link links__link--active" href="#">
+                Zaloguj się
+              </a>
+              <a className="links__link" href="#">
+                Rozpocznij bez logowania
+              </a>
+            </div>
           </div>
           <div className="container__heroimage">
             <img src={heroimage} />
