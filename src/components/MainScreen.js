@@ -83,8 +83,20 @@ const MainScreen = () => {
           </section>
         </div>
         <section className="main__container--about">
-          <div>
-            <TimeCounter />
+          <div className="about__container">
+            <div className="about__image">
+              <img src={laptop} />
+            </div>
+            <p className="about__paragraph about__paragraph--top">
+              Dodaj tytuł zadania, czas w jakim planujesz je wykonać oraz opis
+            </p>
+            <p className="about__paragraph  about__paragraph--right">
+              Kliknij start i skup się na swoim zadaniu
+            </p>
+            <p className="about__paragraph  about__paragraph--left">
+              Jeśli wykonasz zadanie szybciej, możesz je przerwać i dodać do
+              swojej listy tygodniowych zadań
+            </p>
           </div>
         </section>
       </main>

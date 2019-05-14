@@ -94,13 +94,17 @@ img {
   color: $secondary-text-color;
   text-transform: uppercase;
   display: inline-block;
+  &:hover {
+    background-color: $secondary-color;
+    color: white;
+  }
   &--active {
     margin-right: 15px;
     background-color: $secondary-color;
     color: white;
     &:hover {
-      background-color: $second-accent-color;
-      border-color: $second-accent-color;
+      background-color: $accent-color;
+      border-color: $accent-color;
     }
   }
   &--timer {
@@ -145,10 +149,12 @@ img {
   &--h2 {
     font-size: 2rem;
     margin: 0 0 10px 0;
+    color: $secondary-text-color;
   }
   &--paragraph {
     font-size: 1.2rem;
     margin: 0 0 10px 0;
+    color: $secondary-text-color;
   }
 }
 
@@ -218,6 +224,30 @@ img {
     &:focus {
       border: 2px solid $primary-color;
     }
+  }
+}
+
+.about__container {
+  position: relative;
+}
+.about__image {
+  width: 50%;
+  margin: 0 auto;
+}
+.about__paragraph {
+  position: absolute;
+  font-size: 1.2rem;
+  color: $secondary-text-color;
+  &--top {
+    top: 0;
+  }
+  &--right {
+    right: 0;
+    top: 0;
+  }
+  &--left {
+    left: 0;
+    bottom: 0;
   }
 }
 
