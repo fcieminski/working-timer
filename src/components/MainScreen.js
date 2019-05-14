@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import heroimage from "../img/people.png";
-import laptop from "../img/laptop.png";
+import laptop from "../img/responsive.png";
 import { FiClock } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
@@ -82,6 +82,11 @@ const MainScreen = () => {
             </div>
           </section>
         </div>
+        <section className="main__container--about">
+          <div>
+            <TimeCounter />
+          </div>
+        </section>
       </main>
     </div>
   );

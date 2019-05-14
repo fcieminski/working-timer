@@ -47,10 +47,8 @@ img {
   &--backgroundicon {
     position: absolute;
     font-size: 37rem;
-
     transform: rotate(55deg);
     color: #e9e9e9;
-
     top: -21px;
     right: -240px;
     z-index: 0;
@@ -105,12 +103,24 @@ img {
       border-color: $second-accent-color;
     }
   }
+  &--timer {
+    background-color: $secondary-color;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-self: center;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    &:disabled {
+      background-color: gray;
+      border: 1px solid black;
+    }
+  }
 }
 
 .main__container--timer {
   padding-top: 20px;
-  margin-top: 50px;
-  margin-bottom: 50px;
   padding-bottom: 20px;
   width: 1000px;
   margin: 0 auto;
@@ -120,6 +130,13 @@ img {
 
 .main__container--background {
   background-color: $second-accent-color;
+}
+
+.main__container--about {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .timer__about {
@@ -158,19 +175,21 @@ img {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  background-color: #e9e9e9;
   &__buttons {
     display: flex;
     justify-content: space-between;
   }
 }
 .inputs {
+  padding: 10px 10px 0 10px;
   &__group {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding-bottom: 10px;
   }
   &__input {
+    transition: all 0.2s;
     width: 100px;
     height: 50px;
     padding: 10px;
@@ -189,25 +208,16 @@ img {
   }
   &__input--textarea {
     width: 100%;
-    height: 100px;
-    padding: 20px;
-  }
-}
-
-.buttons__btn {
-  background-color: rgb(235, 235, 235);
-  border: 1px solid rgb(141, 141, 141);
-  border-radius: 5px;
-  width: 100px;
-  height: 30px;
-  margin: 10px;
-  &--red {
-    background-color: red;
-    color: white;
-  }
-  &--green {
-    background-color: green;
-    color: white;
+    padding: 5px;
+    border: 2px solid #e9e9e9;
+    border-radius: 5px;
+    font-size: 1rem;
+    &:hover {
+      border: 2px solid $secondary-color;
+    }
+    &:focus {
+      border: 2px solid $primary-color;
+    }
   }
 }
 
@@ -258,4 +268,13 @@ img {
 
 .box__input {
   width: 70%;
+}
+
+//material Ui fixes
+
+label + .MuiInput-formControl-24 {
+  margin-right: 10px;
+}
+.MuiInput-underline-27::after {
+  border-bottom: 2px solid $primary-color !important;
 }

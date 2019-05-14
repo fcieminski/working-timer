@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import TextField from "@material-ui/core/TextField";
+import { FiPlay } from "react-icons/fi";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
@@ -71,54 +73,56 @@ function TimeCounter() {
       <form className="timer" onSubmit={submitTask}>
         <div className="inputs">
           <div className="inputs__group">
-            <input
-              className="inputs__input inputs__input--long"
+            <TextField
               type="text"
-              placeholder="Title"
+              placeholder="Tytuł zadania"
               name="title"
               value={title}
+              label="Tytuł"
               required
               disabled={start && true}
               onChange={event => setTitle(event.target.value)}
             />
-            <input
-              className="inputs__input"
-              placeholder="Hours"
-              name="time"
-              type="number"
-              min="0"
-              max="8"
-              required
-              disabled={start && true}
-              onChange={event => setHours(+event.target.value)}
-            />
-            <input
-              className="inputs__input"
-              placeholder="Minutes"
-              name="time"
-              type="number"
-              min="0"
-              max="59"
-              required
-              disabled={start && true}
-              onChange={event => setMinutes(+event.target.value)}
-            />
-            <input
-              className="inputs__input"
-              placeholder="Seconds"
-              name="time"
-              type="number"
-              min="0"
-              max="59"
-              required
-              disabled={start && true}
-              onChange={event => setSeconds(+event.target.value)}
-            />
+            <div>
+              <TextField
+                className="inputs__input"
+                label="Godziny"
+                placeholder="Godziny"
+                name="time"
+                type="number"
+                inputProps={{ min: "0", max: "8", step: "1" }}
+                required
+                disabled={start && true}
+                onChange={event => setHours(+event.target.value)}
+              />
+              <TextField
+                className="inputs__input"
+                placeholder="Minuty"
+                name="time"
+                type="number"
+                inputProps={{ min: "0", max: "59", step: "1" }}
+                label="Minuty"
+                required
+                disabled={start && true}
+                onChange={event => setMinutes(+event.target.value)}
+              />
+              <TextField
+                className="inputs__input"
+                placeholder="Sekundy"
+                label="Sekundy"
+                name="time"
+                type="number"
+                inputProps={{ min: "1", max: "59", step: "1" }}
+                required
+                disabled={start && true}
+                onChange={event => setSeconds(+event.target.value)}
+              />
+            </div>
           </div>
           <input
             className="inputs__input inputs__input--textarea"
             type="text"
-            placeholder="Task description"
+            placeholder="Opis zadania *"
             name="description"
             value={description}
             required
@@ -126,17 +130,14 @@ function TimeCounter() {
             onChange={event => setDescription(event.target.value)}
           />
         </div>
-        <div className="timer__buttons">
-          <div>
-            <button
-              type="submit"
-              disabled={start && true}
-              className="buttons__btn buttons__btn--green"
-            >
-              Start
-            </button>
-          </div>
-        </div>
+        <button
+          type="submit"
+          disabled={start && true}
+          className="links__link links__link--timer"
+        >
+          <FiPlay style={{ marginRight: "5px" }} />
+          rozpocznij pracę!
+        </button>
       </form>
       <div className="tasks">
         {start && (
