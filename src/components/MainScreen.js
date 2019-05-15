@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import heroimage from "../img/people.png";
 import devices from "../img/responsive.png";
 import laptop from "../img/laptop.png";
@@ -8,6 +8,22 @@ import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
 
 const MainScreen = () => {
+  const [anim, setAnim] = useState("");
+
+  useEffect(() => {
+    let interval;
+    let scrollPlace = 372;
+
+    interval = setInterval(() => {
+      console.log("render");
+      if (window.scrollY >= scrollPlace) {
+        clearInterval(interval);
+        return setAnim("anim");
+      }
+    }, 600);
+    return () => clearInterval(interval);
+  }, [window.scrollY]);
+
   return (
     <div>
       <main className="main">
@@ -50,7 +66,7 @@ const MainScreen = () => {
           </div>
           <div className="features__box">
             <FiCalendar className="features__box--icon" />
-            <h2 className="features__box--h2">Tygodniowy czas pracy</h2>
+            <h2 className="features__box--h2">Twój tygodniowy czas pracy</h2>
             <p className="features__box--paragraph">
               skorzystaj z kalendarza, aby sprawdzić łączy czas pracy przez cały
               tydzień
@@ -84,7 +100,7 @@ const MainScreen = () => {
             <div className="about__image">
               <img src={laptop} />
             </div>
-            <div className="about__paragraph about__paragraph--top">
+            <div className={`about__paragraph  about__paragraph--top ${anim}`}>
               <p className="paragraph--background">
                 <span>
                   Dodaj tytuł zadania, czas w jakim planujesz je wykonać oraz
@@ -93,13 +109,15 @@ const MainScreen = () => {
               </p>
               <img src={arrow} />
             </div>
-            <div className="about__paragraph  about__paragraph--right">
+            <div
+              className={`about__paragraph  about__paragraph--right ${anim}`}
+            >
               <img src={arrow} className="paragraph__image--transform" />
               <p className="paragraph--background">
                 <span>Kliknij start i skup się na swoim zadaniu</span>
               </p>
             </div>
-            <div className="about__paragraph  about__paragraph--left">
+            <div className={`about__paragraph  about__paragraph--left ${anim}`}>
               <p className="paragraph--background">
                 <span>
                   Jeśli wykonasz zadanie szybciej, możesz je przerwać i dodać do

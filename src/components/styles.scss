@@ -274,6 +274,7 @@ a {
   width: 100%;
   max-width: 40%;
   display: flex;
+  opacity: 0;
   &--top {
     top: 140px;
     left: 0;
@@ -286,6 +287,15 @@ a {
     left: 0;
     bottom: 55px;
   }
+}
+
+.anim {
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: bounce;
 }
 
 .paragraph--background {
@@ -365,6 +375,17 @@ a {
 
 .box__input {
   width: 70%;
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translate3d(-2000px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 //material Ui fixes
