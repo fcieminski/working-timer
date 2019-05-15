@@ -23,7 +23,7 @@ const MainScreen = () => {
               <a className="links__link links__link--active" href="#">
                 Zaloguj się
               </a>
-              <a className="links__link" href="#">
+              <a className="links__link" href="#slide">
                 Rozpocznij bez logowania
               </a>
             </div>
@@ -59,7 +59,7 @@ const MainScreen = () => {
           <FiClock stroke-width="1" className="features__box--backgroundicon" />
         </section>
         <div className="main__container--background">
-          <section className="main__container--timer">
+          <section className="main__container--timer" id="slide">
             <div className="timer__image">
               <img src={devices} />
             </div>

@@ -36,7 +36,7 @@ function Header() {
         <MenuElements />
         <div>
           <img />
-          <Link>Zaloguj się</Link>
+          <Link className="links__link">Zaloguj się</Link>
         </div>
       </div>
     </nav>
