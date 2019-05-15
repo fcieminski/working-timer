@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Header";
 import heroimage from "../img/people.png";
 import devices from "../img/responsive.png";
 import laptop from "../img/laptop.png";
@@ -7,14 +6,10 @@ import arrow from "../img/arrow.svg";
 import { FiClock } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
-import TimeCounter from "./TimeCounter";
-import TimeTracker from "./TimeTracker";
-import WorkCountdown from "./WorkCountdown";
 
 const MainScreen = () => {
   return (
     <div>
-      <Header />
       <main className="main">
         <section className="main__container">
           <div className="container__herotext">
