@@ -6,9 +6,11 @@ import arrow from "../img/arrow.svg";
 import { FiClock } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
+import WorkCountdown from "./WorkCountdown";
 
 const MainScreen = () => {
   const [anim, setAnim] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
 
   useEffect(() => {
     let interval;
@@ -76,23 +78,32 @@ const MainScreen = () => {
         </section>
         <div className="main__container--background">
           <section className="main__container--timer" id="slide">
-            <div className="timer__image">
-              <img src={devices} />
-            </div>
-            <div className="timer__about">
-              <h2 className="timer__about--h2">
-                Timey jest dostępny również bez logowania
-              </h2>
-              <p className="timer__about--paragraph">
-                jeśli się nie zalogujesz, otrzymasz dostęp jedynie do timera.
-                Wystarczy, że wprowadzisz czas pracy, a następnie zaczniesz
-                robić swoje. Pamiętaj, aby nic Cię nie rozpraszało, to Twój czas
-                na wykonanie zadania
-              </p>
-              <a href="#" className="links__link links__link--active">
-                Uruchom timer
-              </a>
-            </div>
+            {showTimer ? (
+              <WorkCountdown isActive={showTimer} />
+            ) : (
+              <>
+                <div className="timer__image">
+                  <img src={devices} />
+                </div>
+                <div className="timer__about">
+                  <h2 className="timer__about--h2">
+                    Timey jest dostępny również bez logowania
+                  </h2>
+                  <p className="timer__about--paragraph">
+                    jeśli się nie zalogujesz, otrzymasz dostęp jedynie do
+                    timera. Wystarczy, że wprowadzisz czas pracy, a następnie
+                    zaczniesz robić swoje. Pamiętaj, aby nic Cię nie
+                    rozpraszało, to Twój czas na wykonanie zadania
+                  </p>
+                  <a
+                    onClick={() => setShowTimer(true)}
+                    className="links__link links__link--active"
+                  >
+                    Uruchom timer
+                  </a>
+                </div>
+              </>
+            )}
           </section>
         </div>
         <section className="main__container--about">

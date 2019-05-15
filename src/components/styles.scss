@@ -87,6 +87,7 @@ img {
 
 .links__link {
   transition: all 0.2s;
+  cursor: pointer;
   padding: 10px;
   border: solid 1px $secondary-color;
   border-radius: 5px;
@@ -383,6 +384,15 @@ a {
 
 .box__input {
   width: 70%;
+}
+
+.countdown {
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.active__countdown {
+  opacity: 1;
 }
 
 @keyframes bounce {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const WorkCountdown = () => {
+const WorkCountdown = props => {
   const [title, setTitle] = useState("");
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -62,7 +62,10 @@ const WorkCountdown = () => {
 
   return (
     <div>
-      <form onSubmit={startWork}>
+      <form
+        onSubmit={startWork}
+        className={`countdown ${props.isActive ? "anim" : ""}`}
+      >
         <input
           placeholder="title"
           type="text"
