@@ -166,12 +166,40 @@ img {
     height: 70px;
     display: flex;
     margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
   }
 }
+
+.menu {
+  display: flex;
+  list-style: none;
+  &__li {
+    padding-right: 20px;
+    position: relative;
+    text-align: center;
+    &::after {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 4px;
+      background-color: red;
+      bottom: 0;
+    }
+  }
+}
+
 .menu__element {
   margin: 0;
-  padding-right: 20px;
-  align-self: center;
+  &--active {
+    color: $primary-color;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $secondary-text-color;
 }
 
 .timer {
