@@ -231,23 +231,57 @@ img {
   position: relative;
 }
 .about__image {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
 }
 .about__paragraph {
   position: absolute;
   font-size: 1.2rem;
   color: $secondary-text-color;
+  width: 100%;
+  max-width: 40%;
+  display: flex;
   &--top {
-    top: 0;
+    top: 140px;
+    left: 0;
   }
   &--right {
     right: 0;
-    top: 0;
+    top: 235px;
   }
   &--left {
     left: 0;
-    bottom: 0;
+    bottom: 55px;
+  }
+}
+
+.paragraph--background {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.paragraph--background > span {
+  background-color: $primary-color;
+}
+
+.paragraph__image--transform {
+  transform: rotate(151deg);
+  padding-left: 15px;
+  width: 20%;
+}
+
+.footer {
+  background-color: $secondary-text-color;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__info {
+    margin: 10px;
+  }
+  &__copyright {
+    margin: 10px;
   }
 }
 

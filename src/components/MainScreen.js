@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import heroimage from "../img/people.png";
-import laptop from "../img/responsive.png";
+import devices from "../img/responsive.png";
+import laptop from "../img/laptop.png";
+import arrow from "../img/arrow.svg";
 import { FiClock } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
@@ -64,7 +66,7 @@ const MainScreen = () => {
         <div className="main__container--background">
           <section className="main__container--timer">
             <div className="timer__image">
-              <img src={laptop} />
+              <img src={devices} />
             </div>
             <div className="timer__about">
               <h2 className="timer__about--h2">
@@ -87,19 +89,39 @@ const MainScreen = () => {
             <div className="about__image">
               <img src={laptop} />
             </div>
-            <p className="about__paragraph about__paragraph--top">
-              Dodaj tytuł zadania, czas w jakim planujesz je wykonać oraz opis
-            </p>
-            <p className="about__paragraph  about__paragraph--right">
-              Kliknij start i skup się na swoim zadaniu
-            </p>
-            <p className="about__paragraph  about__paragraph--left">
-              Jeśli wykonasz zadanie szybciej, możesz je przerwać i dodać do
-              swojej listy tygodniowych zadań
-            </p>
+            <div className="about__paragraph about__paragraph--top">
+              <p className="paragraph--background">
+                <span>
+                  Dodaj tytuł zadania, czas w jakim planujesz je wykonać oraz
+                  opis
+                </span>
+              </p>
+              <img src={arrow} />
+            </div>
+            <div className="about__paragraph  about__paragraph--right">
+              <img src={arrow} className="paragraph__image--transform" />
+              <p className="paragraph--background">
+                <span>Kliknij start i skup się na swoim zadaniu</span>
+              </p>
+            </div>
+            <div className="about__paragraph  about__paragraph--left">
+              <p className="paragraph--background">
+                <span>
+                  Jeśli wykonasz zadanie szybciej, możesz je przerwać i dodać do
+                  swojej listy tygodniowych zadań
+                </span>
+              </p>
+              <img src={arrow} />
+            </div>
           </div>
         </section>
       </main>
+      <footer className="footer">
+        <div className="footer__info">hello</div>
+        <div className="footer__copyright">
+          Ikony należą do Freepik | Copyright © 2010-2019 Freepik Company S.L.
+        </div>
+      </footer>
     </div>
   );
 };
