@@ -8,7 +8,7 @@ import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
 
 const MainScreen = () => {
-  const [anim, setAnim] = useState("");
+  const [anim, setAnim] = useState(false);
 
   useEffect(() => {
     let interval;
@@ -18,7 +18,7 @@ const MainScreen = () => {
       console.log("render");
       if (window.scrollY >= scrollPlace) {
         clearInterval(interval);
-        return setAnim("anim");
+        return setAnim(true);
       }
     }, 600);
     return () => clearInterval(interval);
@@ -100,7 +100,11 @@ const MainScreen = () => {
             <div className="about__image">
               <img src={laptop} />
             </div>
-            <div className={`about__paragraph  about__paragraph--top ${anim}`}>
+            <div
+              className={`about__paragraph  about__paragraph--top ${
+                anim ? "anim" : ""
+              }`}
+            >
               <p className="paragraph--background">
                 <span>
                   Dodaj tytuł zadania, czas w jakim planujesz je wykonać oraz
@@ -110,14 +114,20 @@ const MainScreen = () => {
               <img src={arrow} />
             </div>
             <div
-              className={`about__paragraph  about__paragraph--right ${anim}`}
+              className={`about__paragraph  about__paragraph--right ${
+                anim ? "anim-right" : ""
+              }`}
             >
               <img src={arrow} className="paragraph__image--transform" />
               <p className="paragraph--background">
                 <span>Kliknij start i skup się na swoim zadaniu</span>
               </p>
             </div>
-            <div className={`about__paragraph  about__paragraph--left ${anim}`}>
+            <div
+              className={`about__paragraph  about__paragraph--left ${
+                anim ? "anim" : ""
+              }`}
+            >
               <p className="paragraph--background">
                 <span>
                   Jeśli wykonasz zadanie szybciej, możesz je przerwać i dodać do

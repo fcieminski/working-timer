@@ -296,6 +296,14 @@ a {
   animation-iteration-count: 1;
   opacity: 1;
   animation-name: bounce;
+  &-right {
+    animation-fill-mode: both;
+    animation-duration: 1000ms;
+    animation-delay: 0ms;
+    animation-iteration-count: 1;
+    opacity: 1;
+    animation-name: bounce-right;
+  }
 }
 
 .paragraph--background {
@@ -381,6 +389,16 @@ a {
   0% {
     opacity: 0;
     transform: translate3d(-2000px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes bounce-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(2000px, 0px, 0px);
   }
   100% {
     opacity: 1;
