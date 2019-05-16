@@ -113,20 +113,25 @@ const WorkCountdown = props => {
             />
           </div>
         </div>
-        <button type="submit" className="links__link links__link--timer">
+        <button
+          type="submit"
+          disabled={start && true}
+          className="links__link links__link--timer"
+        >
           <FiPlay style={{ marginRight: "5px" }} />
           rozpocznij pracę!
         </button>
         {start && (
           <div className="counter">
-            <p className="counter__time">{hours}</p>
-            <p className="counter__time">{minutes}</p>
-            <p className="counter__time">{seconds}</p>
-            <h2>{title}</h2>
-
+            <p className="counter__title">
+              {title.length > 10 ? title.substring(0, 30) + "..." : title}
+            </p>
+            <p className="counter__time">
+              {hours}:{minutes}:{seconds}
+            </p>
             <button
               onClick={deleteWork}
-              className="links__link links__link--timer"
+              className="links__link links__link--timer links__link--counter"
             >
               <FiXCircle />
             </button>
