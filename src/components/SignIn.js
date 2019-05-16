@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
-import firebase from "firebase";
+import db from "../firebase/firebase";
 
 const SignIn = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const ref = db.ref("works");
   return (
     <>
       <form>

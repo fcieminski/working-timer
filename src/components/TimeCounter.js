@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { FiPlay } from "react-icons/fi";
+import db from "../firebase/firebase";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
@@ -10,6 +11,7 @@ function TimeCounter() {
   const [description, setDescription] = useState("");
   const [current, setCurrent] = useState({});
   const [start, setStart] = useState(false);
+  const ref = db.ref("works");
 
   useEffect(() => {
     let interval;
