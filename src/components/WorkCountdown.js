@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import TextField from "@material-ui/core/TextField";
+import { FiPlay } from "react-icons/fi";
+import { FiXCircle } from "react-icons/fi";
 
 const WorkCountdown = props => {
   const [title, setTitle] = useState("");
@@ -61,52 +64,76 @@ const WorkCountdown = props => {
   };
 
   return (
-    <div>
+    <>
       <form
         onSubmit={startWork}
         className={`countdown ${props.isActive ? "anim" : ""}`}
       >
-        <input
-          placeholder="title"
-          type="text"
-          disabled={start ? true : false}
-          value={title}
-          required
-          onChange={event => setTitle(event.target.value)}
-        />
-        <input
-          placeholder="hours"
-          type="number"
-          required
-          disabled={start ? true : false}
-          onChange={event => setHours(+event.target.value)}
-        />
-        <input
-          placeholder="minutes"
-          type="number"
-          required
-          disabled={start ? true : false}
-          onChange={event => setMinutes(+event.target.value)}
-        />
-        <input
-          placeholder="seconds"
-          type="number"
-          required
-          disabled={start ? true : false}
-          onChange={event => setSeconds(+event.target.value)}
-        />
-        <button type="submit">Start work</button>
-      </form>
-      {start && (
-        <div>
-          <div>{title}</div>{" "}
+        <div className="inputs__group">
+          <TextField
+            placeholder="Tytuł"
+            type="text"
+            label="Tytuł"
+            disabled={start ? true : false}
+            value={title}
+            required
+            onChange={event => setTitle(event.target.value)}
+          />
+
           <div>
-            {hours}:{minutes}:{seconds}
+            <TextField
+              className="inputs__input"
+              placeholder="Godziny"
+              inputProps={{ min: "0", max: "59", step: "1" }}
+              label="Godziny"
+              type="number"
+              required
+              disabled={start ? true : false}
+              onChange={event => setHours(+event.target.value)}
+            />
+            <TextField
+              className="inputs__input"
+              placeholder="Minuty"
+              inputProps={{ min: "0", max: "59", step: "1" }}
+              label="Minuty"
+              type="number"
+              required
+              disabled={start ? true : false}
+              onChange={event => setMinutes(+event.target.value)}
+            />
+            <TextField
+              className="inputs__input"
+              placeholder="Sekundy"
+              inputProps={{ min: "1", max: "59", step: "1" }}
+              label="Sekundy"
+              type="number"
+              required
+              disabled={start ? true : false}
+              onChange={event => setSeconds(+event.target.value)}
+            />
           </div>
-          <button onClick={deleteWork}>X</button>
         </div>
-      )}
-    </div>
+        <button type="submit" className="links__link links__link--timer">
+          <FiPlay style={{ marginRight: "5px" }} />
+          rozpocznij pracę!
+        </button>
+        {start && (
+          <div className="counter">
+            <p className="counter__time">{hours}</p>
+            <p className="counter__time">{minutes}</p>
+            <p className="counter__time">{seconds}</p>
+            <h2>{title}</h2>
+
+            <button
+              onClick={deleteWork}
+              className="links__link links__link--timer"
+            >
+              <FiXCircle />
+            </button>
+          </div>
+        )}
+      </form>
+    </>
   );
 };
 
