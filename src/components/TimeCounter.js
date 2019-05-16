@@ -143,7 +143,7 @@ function TimeCounter() {
         {start && (
           <div
             className={`tasks__current ${
-              hours === 0 && minutes === 0 && seconds > 5
+              hours === 0 && minutes === 0 && seconds < 5
                 ? ""
                 : "tasks__current--red"
             }`}
