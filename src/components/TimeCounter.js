@@ -5,13 +5,14 @@ import db from "../firebase/firebase";
 
 function TimeCounter() {
   const [title, setTitle] = useState("");
+  const [id, setId] = useState(Date.now());
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [hours, setHours] = useState(0);
   const [description, setDescription] = useState("");
   const [current, setCurrent] = useState({});
   const [start, setStart] = useState(false);
-  const ref = db.ref("works");
+  let dataStorage = { title, description, minutes, seconds, hours };
 
   useEffect(() => {
     let interval;
@@ -57,6 +58,11 @@ function TimeCounter() {
   console.log(current);
 
   const resetTimer = () => {
+    db.ref(`works`)
+      .child(id)
+      .update({
+        isDone: false
+      });
     setStart(false);
     setTitle("");
     setDescription("");
@@ -67,6 +73,9 @@ function TimeCounter() {
 
   const submitTask = event => {
     event.preventDefault();
+    db.ref(`works`)
+      .child(id)
+      .set(dataStorage);
     setStart(true);
   };
 

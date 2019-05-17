@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainScreen from "./MainScreen";
 import WorkCountdown from "./WorkCountdown";
 import Header from "./Header";
+import TimeCounter from "./TimeCounter";
 
 const Root = () => {
   return (
@@ -10,6 +11,7 @@ const Root = () => {
       <Header />
       <Route exact path="/" component={MainScreen} />
       <Route exact path="/countdown" component={WorkCountdown} />
+      <Route exact path="/timey" component={TimeCounter} />
     </Router>
   );
 };
