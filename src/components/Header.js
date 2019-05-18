@@ -1,31 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function Header() {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    setCurrentUrl(window.location.pathname);
+    console.log("render elements");
+  }, [window.location.pathname]);
+
   const MenuElements = () => {
-    const url = window.location.pathname;
     return (
       <ul className="menu">
         <li className="menu__li">
-          <Link
-            className={`menu__element ${
-              url === "/" ? "menu__element--active" : ""
-            }`}
+          <NavLink
+            exact
+            to="/"
+            activeClassName="menu__element--active"
+            className="menu__element"
           >
             Główna
-          </Link>
+          </NavLink>
         </li>
         <li className="menu__li">
-          <Link
-            className={`menu__element ${
-              url === "/countdown" ? "menu__element--active" : ""
-            }`}
+          <NavLink
+            // activeClassName="menu__element--active"
+            className="menu__element"
           >
             Timer
-          </Link>
+          </NavLink>
         </li>
         <li className="menu__li">
-          <Link className="menu__element">Object</Link>
+          <NavLink
+            className="menu__element"
+            // activeClassName="menu__element--active"
+          >
+            Object
+          </NavLink>
         </li>
       </ul>
     );
@@ -36,7 +47,9 @@ function Header() {
         <MenuElements />
         <div>
           <img />
-          <Link className="links__link">Zaloguj się</Link>
+          <NavLink to="/signin" className="links__link">
+            Zaloguj się
+          </NavLink>
         </div>
       </div>
     </nav>

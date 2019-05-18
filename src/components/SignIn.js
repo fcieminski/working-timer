@@ -9,33 +9,40 @@ const SignIn = () => {
   const ref = db.ref("works");
   return (
     <>
-      <form>
-        <TextField
-          placeholder="imię"
-          type="imię"
-          label="imię"
-          value={name}
-          required
-          onChange={() => setName(event.target.value)}
-        />
-        <TextField
-          placeholder="e-mail"
-          type="email"
-          label="e-mail"
-          value={email}
-          required
-          onChange={() => setEmail(event.target.value)}
-        />
-        <TextField
-          placeholder="hasło"
-          type="password"
-          label="hasło"
-          value={password}
-          required
-          onChange={() => setPassword(event.target.value)}
-        />
-        <button type="submit">Zarejestruj się</button>
-      </form>
+      <div className="signin__container">
+        <form className="container__form">
+          <TextField
+            placeholder="imię"
+            type="imię"
+            label="imię"
+            value={name}
+            required
+            onChange={event => setName(event.target.value)}
+          />
+          <TextField
+            placeholder="e-mail"
+            type="email"
+            label="e-mail"
+            value={email}
+            required
+            onChange={event => setEmail(event.target.value)}
+          />
+          <TextField
+            placeholder="hasło"
+            type="password"
+            label="hasło"
+            value={password}
+            required
+            onChange={event => setPassword(event.target.value)}
+          />
+          <button className="links__link links__link--timer" type="submit">
+            Zaloguj się
+          </button>
+          <button className="links__link" type="submit">
+            Nie mam konta
+          </button>
+        </form>
+      </div>
     </>
   );
 };

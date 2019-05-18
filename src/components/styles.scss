@@ -447,7 +447,25 @@ a {
   }
 }
 
+.signin__container {
+  margin: 80px auto;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container__form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
 //material Ui fixes
+
+.MuiFormControl-root-1 {
+  margin-bottom: 10px !important;
+}
 
 label + .MuiInput-formControl-24 {
   margin-right: 10px;
