@@ -8,15 +8,19 @@ import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
 import WorkCountdown from "./WorkCountdown";
 import Footer from "./Footer";
+import firebase from "firebase";
 
 const MainScreen = () => {
   const [anim, setAnim] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
+  const [user, setUser] = useState(null);
+  firebase
+    .auth()
+    .onAuthStateChanged(user => (user ? setUser(true) : setUser(false)));
 
   useEffect(() => {
     let interval;
     let scrollPlace = 372;
-
     interval = setInterval(() => {
       console.log("render");
       if (window.scrollY >= scrollPlace) {

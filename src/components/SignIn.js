@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
-import { db } from "../firebase/firebase";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
 
-const SignIn = () => {
-  const [password, setPassword] = useState("");
+const SignIn = props => {
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    firebase
+      .auth()
+      .onAuthStateChanged(user => (user ? props.history.push("/") : false));
+  }, [firebase.User]);
+
+  const logIn = event => {
+    event.preventDefault();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(({ message }) => setError(message));
+  };
+
   return (
     <>
       <div className="signin__container">
-        <form className="container__form">
+        <form className="container__form" onSubmit={logIn}>
           <TextField
             placeholder="e-mail"
             type="email"
@@ -35,6 +51,7 @@ const SignIn = () => {
           <Link to="/signup" className="links__link links__link--signup">
             Nie mam konta
           </Link>
+          {error && <h2>{error}</h2>}
         </form>
       </div>
     </>

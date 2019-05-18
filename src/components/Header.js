@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import firebase from "firebase";
 
-function Header() {
-  const [currentUrl, setCurrentUrl] = useState("");
-
-  useEffect(() => {
-    setCurrentUrl(window.location.pathname);
-    console.log("render elements");
-  }, [window.location.pathname]);
+const Header = props => {
+  let currentUser = firebase.auth().currentUser;
 
   const MenuElements = () => {
     return (
@@ -46,14 +42,17 @@ function Header() {
       <div className="navbar__menu">
         <MenuElements />
         <div>
-          <img />
-          <NavLink to="/signin" className="links__link">
-            Zaloguj się
-          </NavLink>
+          {props.user ? (
+            <p>Logged as {currentUser.email}</p>
+          ) : (
+            <NavLink to="/signin" className="links__link">
+              Zaloguj się
+            </NavLink>
+          )}
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Header;
