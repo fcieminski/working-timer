@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import db from "../firebase/firebase";
+import { db } from "../firebase/firebase";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const ref = db.ref("works");
   return (
     <>
       <div className="signin__container">
         <form className="container__form">
-          <TextField
-            placeholder="imię"
-            type="imię"
-            label="imię"
-            value={name}
-            required
-            onChange={event => setName(event.target.value)}
-          />
           <TextField
             placeholder="e-mail"
             type="email"
@@ -35,12 +26,15 @@ const SignIn = () => {
             required
             onChange={event => setPassword(event.target.value)}
           />
-          <button className="links__link links__link--timer" type="submit">
+          <button
+            className="links__link links__link--active links__link--login"
+            type="submit"
+          >
             Zaloguj się
           </button>
-          <button className="links__link" type="submit">
+          <Link to="/signup" className="links__link links__link--signup">
             Nie mam konta
-          </button>
+          </Link>
         </form>
       </div>
     </>

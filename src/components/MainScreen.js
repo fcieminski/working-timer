@@ -7,6 +7,7 @@ import { FiClock } from "react-icons/fi";
 import { FiCalendar } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
 import WorkCountdown from "./WorkCountdown";
+import Footer from "./Footer";
 
 const MainScreen = () => {
   const [anim, setAnim] = useState(false);
@@ -150,12 +151,7 @@ const MainScreen = () => {
           </div>
         </section>
       </main>
-      <footer className="footer">
-        <div className="footer__info">hello</div>
-        <div className="footer__copyright">
-          Ikony należą do Freepik | Copyright © 2010-2019 Freepik Company S.L.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
