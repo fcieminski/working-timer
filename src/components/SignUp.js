@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
-import firebase from "firebase";
+import fire from "../firebase/firebase";
 
 const SignUp = props => {
   const [name, setName] = useState("");
@@ -9,29 +9,23 @@ const SignUp = props => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    firebase
-      .auth()
-      .onAuthStateChanged(user => (user ? props.history.push("/") : false));
-  }, [firebase.User]);
+    fire.auth.onAuthStateChanged(user =>
+      user ? props.history.push("/") : false
+    );
+  }, []);
 
   const makeAccount = event => {
     event.preventDefault();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        const userId = firebase.auth().currentUser.uid;
-        firebase
-          .database()
-          .ref("works")
-          .child(userId)
-          .set({
-            name: name
-          });
-        setError(null);
-      })
-      .catch(({ message }) => setError(message));
+    register();
   };
+
+  async function register() {
+    try {
+      await fire.signIn(email, password, name);
+    } catch (error) {
+      setError(error);
+    }
+  }
 
   return (
     <>

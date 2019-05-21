@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainScreen from "./MainScreen";
 import WorkCountdown from "./WorkCountdown";
@@ -6,13 +6,15 @@ import Header from "./Header";
 import TimeCounter from "./TimeCounter";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import firebase from "firebase";
+import fire from "../firebase/firebase";
 
 const Root = () => {
   const [user, setUser] = useState(null);
-  firebase
-    .auth()
-    .onAuthStateChanged(user => (user ? setUser(true) : setUser(false)));
+  useEffect(() => {
+    fire.auth.onAuthStateChanged(user =>
+      user ? setUser(true) : setUser(false)
+    );
+  }, []);
   return (
     <Router>
       <Header url={window.location.pathname} user={user} />

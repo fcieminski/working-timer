@@ -10,8 +10,31 @@ const firebaseConfig = {
   appId: "1:140614595870:web:48b5ea90d82b20d6"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const db = app.database();
-export const auth = firebase.auth();
+class Fire {
+  constructor() {
+    let app = firebase.initializeApp(firebaseConfig);
+    this.auth = firebase.auth();
+    this.db = app.database();
+  }
+  async signIn(email, password, name) {
+    await this.auth.createUserWithEmailAndPassword(email, password);
+    return this.auth.currentUser.updateProfile({
+      displayName: name
+    });
+  }
+  logIn(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+  logOut() {
+    return this.auth.signOut();
+  }
+  addUserDatabase(name) {
+    if (this.auth.currentUser) {
+      return this.db.ref(`works/${this.auth.currentUser.uid}`).set({
+        name
+      });
+    }
+  }
+}
 
-export default db;
+export default new Fire();

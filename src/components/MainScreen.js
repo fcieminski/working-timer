@@ -42,7 +42,10 @@ const MainScreen = () => {
             <p className="herotext__paragraph">
               Timey to szybkie narzędzie do śledzenia czasu pracy
             </p>
-            <div className="herotext__links">
+            <div
+              className="herotext__links"
+              style={{ visibility: user && "collapse" }}
+            >
               <a className="links__link links__link--active" href="#">
                 Zaloguj się
               </a>

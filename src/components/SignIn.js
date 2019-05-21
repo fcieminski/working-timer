@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import firebase from "firebase";
+import fire from "../firebase/firebase";
 
 const SignIn = props => {
   const [error, setError] = useState(null);
@@ -9,17 +9,14 @@ const SignIn = props => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    firebase
-      .auth()
-      .onAuthStateChanged(user => (user ? props.history.push("/") : false));
-  }, [firebase.User]);
+    fire.auth.onAuthStateChanged(user =>
+      user ? props.history.push("/") : false
+    );
+  }, []);
 
   const logIn = event => {
     event.preventDefault();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(({ message }) => setError(message));
+    fire.logIn(email, password).catch(({ message }) => setError(message));
   };
 
   return (
