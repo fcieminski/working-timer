@@ -5,6 +5,13 @@ import { FiPlay } from "react-icons/fi";
 
 const Header = props => {
   const [menu, setMenu] = useState(false);
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    if (props.user && fire.auth.currentUser.displayName) {
+      setUserInfo(fire.auth.currentUser.displayName);
+    }
+  }, [props.user]);
 
   const userMenu = () => {
     return (
@@ -52,11 +59,11 @@ const Header = props => {
         <MenuElements />
         <div>
           {props.user ? (
-            <p>
-              Zalogowany jako {fire.auth.currentUser.displayName}
+            <div>
+              <p>Zalogowany jako {userInfo}</p>
               <FiPlay onClick={() => setMenu(!menu)} />
               {menu && userMenu()}
-            </p>
+            </div>
           ) : (
             <NavLink to="/signin" className="links__link">
               Zaloguj się

@@ -17,7 +17,7 @@ const SignUp = props => {
     try {
       await fire.signIn(email, password, name);
       await fire.addUserDatabase(name);
-      props.history.push("/");
+      await props.history.push("/");
     } catch (error) {
       setError(error);
     }
