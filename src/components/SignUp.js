@@ -8,12 +8,6 @@ const SignUp = props => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    fire.auth.onAuthStateChanged(user =>
-      user ? props.history.push("/") : false
-    );
-  }, []);
-
   const makeAccount = event => {
     event.preventDefault();
     register();
@@ -22,6 +16,8 @@ const SignUp = props => {
   async function register() {
     try {
       await fire.signIn(email, password, name);
+      await fire.addUserDatabase(name);
+      props.history.push("/");
     } catch (error) {
       setError(error);
     }
