@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import "moment/locale/pl";
 
 function TimeTracker() {
   const [workTime, setWorkTime] = useState([]);
@@ -7,9 +8,11 @@ function TimeTracker() {
   let dates = [];
   for (let i = 1; i <= 7; i++) {
     let days = moment()
+      .locale("pl")
       .isoWeekday(i)
       .format("Do");
     let date = moment()
+      .locale("pl")
       .isoWeekday(i)
       .format("dddd");
     const newCell = (
@@ -30,7 +33,7 @@ function TimeTracker() {
             id={date}
             type="number"
             min="1"
-            placeholder="Hours worked"
+            placeholder="Godziny pracy"
             className="inputs__input inputs__input--time"
             onChange={event =>
               setWorkTime({
@@ -46,7 +49,7 @@ function TimeTracker() {
             id={date}
             type="number"
             min="1"
-            placeholder="Estimated hours"
+            placeholder="Szacowane"
             className="inputs__input inputs__input--time"
             onChange={event =>
               setWorkTime({
@@ -68,7 +71,7 @@ function TimeTracker() {
     <div>
       <div className="calendar">
         <div className="calendar__head">{dates}</div>
-        <div>
+        <div className="calendar__body">
           <input
             disabled={true}
             value={
