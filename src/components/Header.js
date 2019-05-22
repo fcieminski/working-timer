@@ -66,10 +66,13 @@ const Header = props => {
         <div>
           {props.user ? (
             <div className="navbar__menu-loged">
-              <NavLink className="navbar__menu-loged-p">
+              <NavLink exact to="/profile" className="navbar__menu-loged-p">
                 Zalogowany jako {userInfo}
               </NavLink>
-              <FiPlay onClick={() => setMenu(!menu)} />
+              <FiPlay
+                className="navbar__menu-loged-link"
+                onClick={() => setMenu(!menu)}
+              />
               {menu && userMenu()}
             </div>
           ) : (

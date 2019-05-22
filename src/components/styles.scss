@@ -206,7 +206,7 @@ img {
     align-items: center;
     &-logout {
       position: absolute;
-      top: 20px;
+      top: 37px;
       right: 0;
       background-color: white;
       padding: 20px;
@@ -220,6 +220,9 @@ img {
       animation-name: opacit;
       &-p {
         margin-right: 5px;
+        &:hover {
+          color: $primary-color;
+        }
       }
     }
     &-loged {
@@ -228,6 +231,18 @@ img {
       position: relative;
       &-p {
         margin-right: 5px;
+        transition: all 0.2s;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+      &-link {
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          color: #004e6b;
+          margin-left: 5px;
+        }
       }
     }
   }
@@ -391,6 +406,12 @@ a {
   transform: rotate(151deg);
   padding-left: 15px;
   width: 20%;
+}
+
+.profile {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .footer {

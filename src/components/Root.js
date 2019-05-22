@@ -7,6 +7,7 @@ import TimeCounter from "./TimeCounter";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import fire from "../firebase/firebase";
+import Profile from "./Profile";
 
 const Root = () => {
   const [user, setUser] = useState(null);
@@ -23,6 +24,7 @@ const Root = () => {
       <Route exact path="/timey" component={TimeCounter} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/profile" component={Profile} />
     </Router>
   );
 };
