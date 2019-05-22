@@ -66,7 +66,16 @@ const Header = props => {
         <div>
           {props.user ? (
             <div className="navbar__menu-loged">
-              <NavLink exact to="/profile" className="navbar__menu-loged-p">
+              <NavLink
+                exact
+                to={{
+                  pathname: "/profile",
+                  aboutUser: {
+                    userInfo
+                  }
+                }}
+                className="navbar__menu-loged-p"
+              >
                 Zalogowany jako {userInfo}
               </NavLink>
               <FiPlay

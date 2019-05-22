@@ -410,8 +410,24 @@ a {
 
 .profile {
   margin-top: 50px;
-  display: flex;
-  justify-content: center;
+  &__container {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &-user {
+      display: flex;
+      &-image {
+        width: 20%;
+      }
+      &-info {
+        margin-left: 20px;
+        flex: 1;
+      }
+    }
+  }
 }
 
 .footer {
