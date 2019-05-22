@@ -204,6 +204,41 @@ img {
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
+    &-logout {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      animation-fill-mode: both;
+      animation-duration: 0.5s;
+      animation-delay: 0ms;
+      animation-iteration-count: 1;
+      animation-name: opacit;
+      &-p {
+        margin-right: 5px;
+      }
+    }
+    &-loged {
+      display: flex;
+      align-items: center;
+      position: relative;
+      &-p {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@keyframes opacit {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

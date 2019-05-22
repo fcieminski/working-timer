@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import fire from "../firebase/firebase";
-import { FiPlay } from "react-icons/fi";
+import { FiPlay, FiLogOut, FiLogIn } from "react-icons/fi";
 
 const Header = props => {
   const [menu, setMenu] = useState(false);
@@ -15,8 +15,14 @@ const Header = props => {
 
   const userMenu = () => {
     return (
-      <div>
-        <p onClick={() => fire.logOut().then(setMenu(false))}>Wyloguj się</p>
+      <div className="navbar__menu-logout">
+        <p
+          className="navbar__menu-logout-p"
+          onClick={() => fire.logOut().then(setMenu(false))}
+        >
+          Wyloguj się
+        </p>
+        <FiLogOut />
       </div>
     );
   };
@@ -59,14 +65,16 @@ const Header = props => {
         <MenuElements />
         <div>
           {props.user ? (
-            <div>
-              <p>Zalogowany jako {userInfo}</p>
+            <div className="navbar__menu-loged">
+              <NavLink className="navbar__menu-loged-p">
+                Zalogowany jako {userInfo}
+              </NavLink>
               <FiPlay onClick={() => setMenu(!menu)} />
               {menu && userMenu()}
             </div>
           ) : (
             <NavLink to="/signin" className="links__link">
-              Zaloguj się
+              Zaloguj się <FiLogIn />
             </NavLink>
           )}
         </div>
