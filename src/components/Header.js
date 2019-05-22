@@ -19,15 +19,23 @@ const Header = props => {
   const userMenu = () => {
     return (
       <div className="navbar__menu-logout">
-        <p
-          className="navbar__menu-logout-p"
-          onClick={() => fire.logOut().then(setMenu(false))}
-        >
+        <p className="navbar__menu-logout-p" onClick={logOut}>
           Wyloguj się
         </p>
         <FiLogOut />
       </div>
     );
+  };
+
+  const logOut = () => {
+    fire
+      .logOut()
+      .then(setMenu(false))
+      .then(
+        window.location.pathname === "/profile"
+          ? (window.location.pathname = "/")
+          : false
+      );
   };
 
   const MenuElements = () => {
