@@ -5,14 +5,22 @@ import TimeTracker from "./TimeTracker";
 import fire from "../firebase/firebase";
 
 const Profile = props => {
-  const [name, setName] = useState("");
+  const [user, setUser] = useState([]);
+  const [uid, setUid] = useState("");
 
   useEffect(() => {
     if (props.location.aboutUser) {
-      localStorage.setItem("name", props.location.aboutUser.userInfo);
+      sessionStorage.setItem("name", props.location.aboutUser.userInfo.name);
+      sessionStorage.setItem("email", props.location.aboutUser.userInfo.email);
     }
-    if (localStorage.getItem("name")) {
-      setName(localStorage.getItem("name"));
+    if (sessionStorage.getItem("name")) {
+      setUser({
+        name: sessionStorage.getItem("name"),
+        email: sessionStorage.getItem("email")
+      });
+    }
+    if (fire.auth.currentUser) {
+      setUid(fire.auth.currentUser.uid);
     }
   }, [props]);
 
@@ -24,12 +32,12 @@ const Profile = props => {
             <img src={avatar} />
           </div>
           <div className="profile__container-user-info">
-            <h2>{name}</h2>
-            <p>email</p>
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
             <p>Godziny pracy</p>
           </div>
         </div>
-        <TimeCounter />
+        <TimeCounter userUid={uid} />
         <TimeTracker />
       </div>
     </div>

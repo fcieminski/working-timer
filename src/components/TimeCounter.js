@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
-import { FiPlay } from "react-icons/fi";
-import db from "../firebase/firebase";
+import { FiPlay, FiXCircle } from "react-icons/fi";
+import fire from "../firebase/firebase";
 
-function TimeCounter() {
+function TimeCounter(props) {
   const [title, setTitle] = useState("");
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -13,6 +13,12 @@ function TimeCounter() {
   const [start, setStart] = useState(false);
   let id = Date.now();
   let dataStorage = { title, description, minutes, seconds, hours };
+
+  // useEffect(() => {
+  //   if (props.userUid){
+  //     set
+  //   }
+  // }, [props]);
 
   useEffect(() => {
     let interval;
@@ -58,11 +64,12 @@ function TimeCounter() {
   console.log(current);
 
   const resetTimer = () => {
-    db.ref(`works`)
-      .child(id)
-      .update({
-        isDone: false
-      });
+    // fire.db
+    //   .ref(`works`)
+    //   .child(props.userUid)
+    //   .update({
+    //     isDone: false
+    //   });
     setStart(false);
     setTitle("");
     setDescription("");
@@ -73,9 +80,11 @@ function TimeCounter() {
 
   const submitTask = event => {
     event.preventDefault();
-    db.ref(`works`)
+    fire.db
+      .ref(`works`)
+      .child(props.userUid)
       .child(id)
-      .set(dataStorage);
+      .update(dataStorage);
     setStart(true);
   };
 
@@ -152,23 +161,20 @@ function TimeCounter() {
       </form>
       <div className="tasks">
         {start && (
-          <div
-            className={`tasks__current ${
-              hours === 0 && minutes === 0 && seconds < 5
-                ? ""
-                : "tasks__current--red"
-            }`}
-          >
-            <div>
-              <p className="current__info">{title}</p>
-              <p className="current__info">
-                {description.substr(0, 50).trim()}
-              </p>
-              <p>
-                {hours}:{minutes}:{seconds}
-              </p>
-            </div>
-            <button onClick={resetTimer}>X</button>
+          <div className="counter">
+            <p className="counter__title">
+              {title.length > 10 ? title.substring(0, 30) + "..." : title}
+            </p>
+            <p className="counter__title">{description.substr(0, 50).trim()}</p>
+            <p className="counter__time">
+              {hours}:{minutes}:{seconds}
+            </p>
+            <button
+              onClick={resetTimer}
+              className="links__link links__link--timer links__link--counter"
+            >
+              <FiXCircle />
+            </button>
           </div>
         )}
       </div>

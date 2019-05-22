@@ -5,11 +5,14 @@ import { FiPlay, FiLogOut, FiLogIn } from "react-icons/fi";
 
 const Header = props => {
   const [menu, setMenu] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState([]);
 
   useEffect(() => {
     if (props.user && fire.auth.currentUser.displayName) {
-      setUserInfo(fire.auth.currentUser.displayName);
+      setUserInfo({
+        name: fire.auth.currentUser.displayName,
+        email: fire.auth.currentUser.email
+      });
     }
   }, [props.user]);
 
@@ -74,9 +77,10 @@ const Header = props => {
                     userInfo
                   }
                 }}
+                activeClassName="menu__element--active"
                 className="navbar__menu-loged-p"
               >
-                Zalogowany jako {userInfo}
+                Zalogowany jako {userInfo.name}
               </NavLink>
               <FiPlay
                 className="navbar__menu-loged-link"
