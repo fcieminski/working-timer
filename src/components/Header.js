@@ -14,7 +14,7 @@ const Header = props => {
         email: fire.auth.currentUser.email
       });
     }
-  }, [props.user]);
+  }, [props]);
 
   const userMenu = () => {
     return (

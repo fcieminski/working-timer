@@ -17,7 +17,7 @@ const SignUp = props => {
     try {
       await fire.signIn(email, password, name);
       await fire.addUserDatabase(name);
-      await props.history.push("/");
+      await window.location.replace("/");
     } catch (error) {
       setError(error);
     }
@@ -57,7 +57,7 @@ const SignUp = props => {
           >
             Załóż konto
           </button>
-          {error ? <h2>{error}</h2> : ""}
+          {error ? <h2>{error.message}</h2> : ""}
         </form>
       </div>
     </>

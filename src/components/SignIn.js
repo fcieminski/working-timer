@@ -10,7 +10,7 @@ const SignIn = props => {
 
   useEffect(() => {
     fire.auth.onAuthStateChanged(user =>
-      user ? props.history.push("/") : false
+      user ? window.location.replace("/") : false
     );
   }, []);
 
@@ -48,7 +48,7 @@ const SignIn = props => {
           <Link to="/signup" className="links__link links__link--signup">
             Nie mam konta
           </Link>
-          {error && <h2>{error}</h2>}
+          {error && <h2>{error.message}</h2>}
         </form>
       </div>
     </>
