@@ -24,6 +24,10 @@ const Profile = props => {
     }
   }, [props]);
 
+
+
+ 
+
   return (
     <div className="profile">
       <div className="profile__container">
@@ -38,7 +42,7 @@ const Profile = props => {
           </div>
         </div>
         <TimeCounter userUid={uid} />
-        <TimeTracker />
+        <TimeTracker userUid={uid}/>
       </div>
     </div>
   );
