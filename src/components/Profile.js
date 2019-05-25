@@ -8,6 +8,10 @@ const Profile = props => {
   const [user, setUser] = useState([]);
   const [uid, setUid] = useState("");
   const [currentData, setCurrentData] = useState([]);
+  let todayDate = new Date()
+    .toLocaleDateString()
+    .split(".")
+    .join("-");
 
   useEffect(() => {
     if (props.location.aboutUser) {
@@ -38,9 +42,18 @@ const Profile = props => {
           <div className="profile__container-user-info">
             <h2>{user.name}</h2>
             <p>{user.email}</p>
-            <p>{currentData.name}</p>
           </div>
         </div>
+        {currentData[todayDate] ? (
+          currentData[todayDate].map(element => (
+            <p>
+              {element.title} {element.description}
+            </p>
+          ))
+        ) : (
+          <p>Dzisiaj nie pracowałeś!</p>
+        )}
+        <div />
         <div className="profile__container-work">
           <h2>Rozpocznij swoje zadanie</h2>
         </div>

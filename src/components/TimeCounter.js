@@ -26,12 +26,6 @@ function TimeCounter(props) {
     isDone: false
   };
 
-  // useEffect(() => {
-  //   if (props.userUid){
-  //     set
-  //   }
-  // }, [props]);
-
   useEffect(() => {
     let interval;
     if (start) {

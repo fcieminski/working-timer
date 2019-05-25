@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/pl";
-import fire from '../firebase/firebase'
+import fire from "../firebase/firebase";
 
 function TimeTracker() {
   const [workTime, setWorkTime] = useState([]);
 
-
-    const saveTime = () => {
-      if(workTime.estimated){
-        // to do
-      }
+  const saveTime = () => {
+    if (workTime.estimated) {
+      // to do
     }
-
-
-
+  };
 
   let dates = [];
   for (let i = 1; i <= 7; i++) {
