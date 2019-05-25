@@ -7,6 +7,7 @@ import fire from "../firebase/firebase";
 const Profile = props => {
   const [user, setUser] = useState([]);
   const [uid, setUid] = useState("");
+  const [currentData, setCurrentData] = useState([]);
 
   useEffect(() => {
     if (props.location.aboutUser) {
@@ -22,11 +23,10 @@ const Profile = props => {
     if (fire.auth.currentUser) {
       setUid(fire.auth.currentUser.uid);
     }
+    if (props.fireData) {
+      setCurrentData(props.fireData[uid]);
+    }
   }, [props]);
-
-
-
- 
 
   return (
     <div className="profile">
@@ -38,11 +38,17 @@ const Profile = props => {
           <div className="profile__container-user-info">
             <h2>{user.name}</h2>
             <p>{user.email}</p>
-            <p>Godziny pracy</p>
+            <p>{currentData.name}</p>
           </div>
         </div>
+        <div className="profile__container-work">
+          <h2>Rozpocznij swoje zadanie</h2>
+        </div>
         <TimeCounter userUid={uid} />
-        <TimeTracker userUid={uid}/>
+        <div className="profile__container-work">
+          <h2>Kalendarz godzin pracy</h2>
+        </div>
+        <TimeTracker userUid={uid} />
       </div>
     </div>
   );

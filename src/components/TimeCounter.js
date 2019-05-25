@@ -11,8 +11,19 @@ function TimeCounter(props) {
   const [description, setDescription] = useState("");
   const [current, setCurrent] = useState({});
   const [start, setStart] = useState(false);
-  let id = Date.now();
-  let dataStorage = { title, description, minutes, seconds, hours };
+  const [done, setDone] = useState(false);
+  let id = new Date()
+    .toLocaleDateString()
+    .split(".")
+    .join("-");
+  let dataStorage = {
+    title,
+    description,
+    minutes,
+    seconds,
+    hours,
+    isDone: false
+  };
 
   // useEffect(() => {
   //   if (props.userUid){
@@ -56,6 +67,14 @@ function TimeCounter(props) {
         setSeconds(0);
         setMinutes(0);
         setHours(0);
+        setDone(true);
+        fire.db
+          .ref(`works`)
+          .child(props.userUid)
+          .child(id)
+          .update({
+            isDone: true
+          });
       });
     };
     return () => clearInterval(interval);
@@ -64,13 +83,15 @@ function TimeCounter(props) {
   console.log(current);
 
   const resetTimer = () => {
-    // fire.db
-    //   .ref(`works`)
-    //   .child(props.userUid)
-    //   .update({
-    //     isDone: false
-    //   });
+    if (done === false) {
+      fire.db
+        .ref(`works`)
+        .child(props.userUid)
+        .child(id)
+        .set(null);
+    }
     setStart(false);
+    setDone(false);
     setTitle("");
     setDescription("");
     setMinutes(0);
