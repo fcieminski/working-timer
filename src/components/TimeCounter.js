@@ -12,6 +12,7 @@ function TimeCounter(props) {
   const [current, setCurrent] = useState({});
   const [start, setStart] = useState(false);
   const [done, setDone] = useState(false);
+  const [currentTask, setCurrentTask] = useState(0);
   let id = new Date()
     .toLocaleDateString()
     .split(".")
@@ -72,9 +73,11 @@ function TimeCounter(props) {
           .ref(`works`)
           .child(props.userUid)
           .child(id)
+          .child(currentTask)
           .update({
             isDone: true
           });
+        setCurrentTask(currentTask + 1);
       });
     };
     return () => clearInterval(interval);
@@ -88,6 +91,7 @@ function TimeCounter(props) {
         .ref(`works`)
         .child(props.userUid)
         .child(id)
+        .child(currentTask)
         .set(null);
     }
     setStart(false);
@@ -105,6 +109,7 @@ function TimeCounter(props) {
       .ref(`works`)
       .child(props.userUid)
       .child(id)
+      .child(currentTask)
       .update(dataStorage);
     setStart(true);
   };
