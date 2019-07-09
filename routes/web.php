@@ -12,3 +12,8 @@
 */
 
 Route::view('/{path?}', 'index');
+
+
+
+Auth::routes();
+

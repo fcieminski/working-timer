@@ -7,11 +7,13 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Timey</title>
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app"></div>
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script> 
+            var csrf_token = '<?php echo csrf_token(); ?>'; 
+        </script>
     </body>
     </html>
