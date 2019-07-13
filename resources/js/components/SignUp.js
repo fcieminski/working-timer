@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Redirect } from "react-router";
+import axios from "axios";
 
 const SignUp = props => {
     const [name, setName] = useState("");
@@ -14,36 +15,32 @@ const SignUp = props => {
         register();
     };
 
-
-
-    async function register() {
-        try {
-            await fetch("/register", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrf_token
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                    password,
-                    name
-                })
-            }).catch(({ error }) => console.log(error));
-            await setHome("true");
-        } catch (error) {
-            setError(error);
-        }
-        // try {
-        //   await fire.signIn(email, password, name);
-        //   await fire.addUserDatabase(name);
-        //   await window.location.replace("/");
-        // } catch (error) {
-        //   setError(error);
-        // }
-    }
+    let register = () => {
+        fetch("/register", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrf_token
+            },
+            body: JSON.stringify({
+                email,
+                password,
+                password,
+                name
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    setHome("true");
+                } else {
+                    response
+                        .json()
+                        .then(({ errors }) => setError(errors.email[0]));
+                }
+            })
+            .catch(({ error }) => console.log(error));
+    };
 
     return (
         <>
@@ -80,7 +77,7 @@ const SignUp = props => {
                     >
                         Załóż konto
                     </button>
-                    {error ? <h2>{error.message}</h2> : ""}
+                    {error ? <h2>{error}</h2> : ""}
                 </form>
             </div>
         </>
