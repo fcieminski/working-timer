@@ -14,6 +14,8 @@ const SignUp = props => {
         register();
     };
 
+
+
     async function register() {
         try {
             await fetch("/register", {

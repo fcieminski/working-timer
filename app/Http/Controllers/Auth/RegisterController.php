@@ -69,4 +69,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function getUser()
+    {
+        $user = Auth::user();
+        var_dump($user);
+        return $user;
+    }
 }

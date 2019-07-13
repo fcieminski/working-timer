@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +18,4 @@ Route::view('/{path?}', 'index');
 
 Auth::routes();
 
+Route::get('api/me', "ProfileController@getuser");
