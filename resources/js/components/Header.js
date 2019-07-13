@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import fire from "../firebase/firebase";
 import { FiPlay, FiLogOut, FiLogIn } from "react-icons/fi";
+import axios from "axios";
 
 const Header = props => {
     const [menu, setMenu] = useState(false);
@@ -28,7 +29,8 @@ const Header = props => {
     };
 
     const logOut = () => {
-        fire.logOut()
+        axios
+            .get("api/logout")
             .then(setMenu(false))
             .then(
                 window.location.pathname === "/profile"
