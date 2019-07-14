@@ -31,11 +31,7 @@ const Header = props => {
         axios
             .get("api/logout")
             .then(setMenu(false))
-            .then(
-                window.location.pathname === "/profile"
-                    ? props.location.push("/")
-                    : props.fetchUser()
-            );
+            .then(props.fetchUser());
     };
 
     const MenuElements = () => {

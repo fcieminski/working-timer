@@ -38,15 +38,6 @@ const Profile = props => {
         }
     }, [props]);
 
-    async function logOut() {
-        try {
-            await axios.get("api/logout").then(({ data }) => console.log(data));
-            await props.history.push("/");
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return (
         <div className="profile">
             <div className="profile__container">
@@ -57,7 +48,6 @@ const Profile = props => {
                     <div className="profile__container-user-info">
                         <h2>{user.name}</h2>
                         <p>{user.email}</p>
-                        <button onClick={logOut}>Wyloguj się</button>
                     </div>
                 </div>
                 {currentData[todayDate] ? (
