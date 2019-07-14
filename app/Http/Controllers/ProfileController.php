@@ -11,8 +11,14 @@ class ProfileController extends Controller
    {
         return $request->user();
    }
+
    public function logout(Request $request)
    {
         return Auth::logout();
+   }
+
+   public function getUserWorks()
+   {
+     
    }
 }

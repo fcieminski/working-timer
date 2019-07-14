@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { FiPlay, FiXCircle } from "react-icons/fi";
+import axios from "axios";
 
 function TimeCounter(props) {
     const [title, setTitle] = useState("");
@@ -86,7 +87,11 @@ function TimeCounter(props) {
 
     const submitTask = event => {
         event.preventDefault();
-        //TODO!!!!!!
+        axios
+            .post("api/works", {
+                time: seconds
+            })
+            .then(({ data }) => console.log(data));
         setStart(true);
     };
 

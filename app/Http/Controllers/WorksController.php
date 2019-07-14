@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use ProfileController;
 use App\Works;
-
 class WorksController extends Controller
 {
     public function show()
     {
-        return Works::all();
+        return Works::where('user_id', auth()->id())->get();
     }
 
     public function create(Request $request)
@@ -18,6 +17,8 @@ class WorksController extends Controller
         $works = new Works();
         $works->time = $request->time;
         $works->done = false;
+       //AUTH USER NOT WORKING
+        $works->user_id = auth()->user();
         $works->save();
         return ['works' => $works];
     }

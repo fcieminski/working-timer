@@ -16,8 +16,12 @@ class CreateWorksTable extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->unsignedInteger('user_id');
             $table->bigInteger('time');
             $table->boolean('done');
+
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
