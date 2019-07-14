@@ -29,8 +29,6 @@ const Root = () => {
                 fetchUser={fetchUser}
             />
             <Route exact path="/" component={MainScreen} />
-            <Route exact path="/countdown" component={WorkCountdown} />
-            <Route exact path="/timey" component={TimeCounter} />
             {user ? (
                 <Redirect to="/" />
             ) : (
@@ -45,10 +43,14 @@ const Root = () => {
                 </>
             )}
             {user ? (
-                <Route
-                    path="/profile"
-                    render={props => <Profile {...props} fireData={data} />}
-                />
+                <>
+                    <Route
+                        path="/profile"
+                        render={props => <Profile {...props} fireData={data} />}
+                    />
+                    <Route exact path="/countdown" component={WorkCountdown} />
+                    <Route exact path="/timey" component={TimeCounter} />
+                </>
             ) : (
                 <Redirect to="/" />
             )}
