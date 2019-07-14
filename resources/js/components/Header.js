@@ -27,12 +27,10 @@ const Header = props => {
         );
     };
 
-    const logOut = () => {
-        axios
-            .get("api/logout")
-            .then(setMenu(false))
-            .then(props.fetchUser());
-    };
+    async function logOut() {
+        await axios.get("api/logout").then(setMenu(false));
+        await props.fetchUser();
+    }
 
     const MenuElements = () => {
         return (

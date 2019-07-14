@@ -39,6 +39,18 @@ const SignIn = props => {
                     : response.json().then(({ errors }) => setError(errors))
             )
             .catch(error => console.log(error));
+
+        // axios
+        // .post("/login", {
+        //     email,
+        //     password
+        // })
+        // .then(response =>
+        //     response.ok
+        //         ? isLogged()
+        //         : response.json().then(({ errors }) => setError(errors))
+        // )
+        // .catch(error => console.log(error));
     };
 
     return (
