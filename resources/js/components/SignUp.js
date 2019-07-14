@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Redirect } from "react-router";
-import axios from "axios";
 
 const SignUp = props => {
     const [name, setName] = useState("");

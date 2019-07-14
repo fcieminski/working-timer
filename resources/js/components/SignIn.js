@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import fire from "../firebase/firebase";
 import axios from "axios";
 
 const SignIn = props => {
@@ -14,6 +13,11 @@ const SignIn = props => {
             .get("api/me")
             .then(({ data }) => (data.email ? props.history.push("/") : false));
     }, []);
+
+    const isLogged = () => {
+        props.fetchUser();
+        props.history.push("/");
+    };
 
     const logIn = event => {
         event.preventDefault();
@@ -31,7 +35,7 @@ const SignIn = props => {
         })
             .then(response =>
                 response.ok
-                    ? props.history.push("/")
+                    ? isLogged()
                     : response.json().then(({ errors }) => setError(errors))
             )
             .catch(error => console.log(error));
