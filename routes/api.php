@@ -17,8 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get('me', "ProfileController@getuser");
-Route::get('logout', "ProfileController@logout");
 
 
 Route::get('works',"WorksController@show");

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-   public function getuser(Request $request)
+   public function getUser(Request $request)
    {
-        return $request->user();
+        return Auth::user();
    }
 
    public function logout(Request $request)

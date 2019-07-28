@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Redirect } from "react-router";
+import axios from "axios";
 
 const SignUp = props => {
     const [name, setName] = useState("");
@@ -15,30 +16,21 @@ const SignUp = props => {
     };
 
     let register = () => {
-        fetch("/register", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrf_token
-            },
-            body: JSON.stringify({
+        axios
+            .post("/register", {
                 email,
                 password,
                 password,
                 name
             })
-        })
             .then(response => {
-                if (response.ok) {
+                if (response.statusText === "OK") {
                     setHome("true");
                 } else {
-                    response
-                        .json()
-                        .then(({ errors }) => setError(errors.email[0]));
+                    setError("Wystąpił błąd");
                 }
             })
-            .catch(({ error }) => console.log(error));
+            .catch(() => setError("Adres email zajęty"));
     };
 
     return (

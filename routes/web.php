@@ -18,7 +18,9 @@ Route::view('/{path?}', 'index');
 
 Auth::routes();
 
-Route::get('api/me', "ProfileController@getuser");
-Route::get('api/logout', "ProfileController@logout");
+Route::prefix('app')->group(function (){
+Route::get('me', "ProfileController@getUser");
+Route::get('logout', "ProfileController@logout");
+});
 
 

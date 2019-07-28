@@ -20,7 +20,7 @@ class WorksController extends Controller
        //AUTH USER NOT WORKING
         $works->user_id = auth()->user();
         $works->save();
-        return ['works' => $works];
+        return response()->json();
     }
 
     public function updateDone(Request $request, $id)
@@ -28,7 +28,7 @@ class WorksController extends Controller
         $works = Works::findOrFail($id);
         $works->done = $request->done;
         $works->save();
-        return ['done' => $works->done];
+        return response()->json();
     }
 
 }

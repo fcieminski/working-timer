@@ -10,7 +10,7 @@ const SignIn = props => {
 
     useEffect(() => {
         axios
-            .get("api/me")
+            .get("/app/me")
             .then(({ data }) => (data.email ? props.history.push("/") : false));
     }, []);
 
@@ -21,6 +21,18 @@ const SignIn = props => {
 
     const logIn = event => {
         event.preventDefault();
+        // axios
+        //     .post("/login", {
+        //         email,
+        //         password
+        //     })
+        //     .then(response =>
+        //         response.request.statusText === "OK"
+        //             ? isLogged()
+        //             : response.json().then(({ errors }) => setError(errors))
+        //     )
+        //     .catch(error => console.log(error));
+
         fetch("/login", {
             method: "POST",
             headers: {
@@ -39,18 +51,6 @@ const SignIn = props => {
                     : response.json().then(({ errors }) => setError(errors))
             )
             .catch(error => console.log(error));
-
-        // axios
-        // .post("/login", {
-        //     email,
-        //     password
-        // })
-        // .then(response =>
-        //     response.ok
-        //         ? isLogged()
-        //         : response.json().then(({ errors }) => setError(errors))
-        // )
-        // .catch(error => console.log(error));
     };
 
     return (

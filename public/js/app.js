@@ -69586,7 +69586,7 @@ var Header = function Header(props) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/logout").then(setMenu(false));
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/app/logout").then(setMenu(false));
 
             case 2:
               _context.next = 4;
@@ -69984,9 +69984,10 @@ var Root = function Root() {
   }, []);
 
   var fetchUser = function fetchUser() {
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get("api/me").then(function (_ref) {
+    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get("/app/me").then(function (_ref) {
       var data = _ref.data;
-      return setUser(data);
+      console.log(data);
+      setUser(data);
     });
   };
 
@@ -70079,7 +70080,7 @@ var SignIn = function SignIn(props) {
       setPassword = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("api/me").then(function (_ref) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/app/me").then(function (_ref) {
       var data = _ref.data;
       return data.email ? props.history.push("/") : false;
     });
@@ -70091,7 +70092,18 @@ var SignIn = function SignIn(props) {
   };
 
   var logIn = function logIn(event) {
-    event.preventDefault();
+    event.preventDefault(); // axios
+    //     .post("/login", {
+    //         email,
+    //         password
+    //     })
+    //     .then(response =>
+    //         response.request.statusText === "OK"
+    //             ? isLogged()
+    //             : response.json().then(({ errors }) => setError(errors))
+    //     )
+    //     .catch(error => console.log(error));
+
     fetch("/login", {
       method: "POST",
       headers: {
@@ -70110,17 +70122,7 @@ var SignIn = function SignIn(props) {
       });
     })["catch"](function (error) {
       return console.log(error);
-    }); // axios
-    // .post("/login", {
-    //     email,
-    //     password
-    // })
-    // .then(response =>
-    //     response.ok
-    //         ? isLogged()
-    //         : response.json().then(({ errors }) => setError(errors))
-    // )
-    // .catch(error => console.log(error));
+    });
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70172,6 +70174,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -70181,6 +70185,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -70218,31 +70223,19 @@ var SignUp = function SignUp(props) {
   };
 
   var register = function register() {
-    var _JSON$stringify;
+    var _axios$post;
 
-    fetch("/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "X-CSRF-TOKEN": csrf_token
-      },
-      body: JSON.stringify((_JSON$stringify = {
-        email: email,
-        password: password
-      }, _defineProperty(_JSON$stringify, "password", password), _defineProperty(_JSON$stringify, "name", name), _JSON$stringify))
-    }).then(function (response) {
-      if (response.ok) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/register", (_axios$post = {
+      email: email,
+      password: password
+    }, _defineProperty(_axios$post, "password", password), _defineProperty(_axios$post, "name", name), _axios$post)).then(function (response) {
+      if (response.statusText === "OK") {
         setHome("true");
       } else {
-        response.json().then(function (_ref) {
-          var errors = _ref.errors;
-          return setError(errors.email[0]);
-        });
+        setError("Wystąpił błąd");
       }
-    })["catch"](function (_ref2) {
-      var error = _ref2.error;
-      return console.log(error);
+    })["catch"](function () {
+      return setError("Adres email zajęty");
     });
   };
 

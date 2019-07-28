@@ -28,7 +28,7 @@ const Header = props => {
     };
 
     async function logOut() {
-        await axios.get("api/logout").then(setMenu(false));
+        await axios.get("/app/logout").then(setMenu(false));
         await props.fetchUser();
     }
 

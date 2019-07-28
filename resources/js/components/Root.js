@@ -18,7 +18,10 @@ const Root = () => {
     }, []);
 
     const fetchUser = () => {
-        axios.get("api/me").then(({ data }) => setUser(data));
+        axios.get("/app/me").then(({ data }) => {
+            console.log(data);
+            setUser(data);
+        });
     };
 
     return (
