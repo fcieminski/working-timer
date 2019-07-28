@@ -69555,6 +69555,7 @@ var Header = function Header(props) {
       userInfo = _useState4[0],
       setUserInfo = _useState4[1];
 
+  var wrapperRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (props.user) {
       setUserInfo({
@@ -69563,10 +69564,27 @@ var Header = function Header(props) {
       });
     }
   }, [props]);
+  useOutsideAlerter(wrapperRef);
+
+  function useOutsideAlerter(ref) {
+    var handleClick = function handleClick(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setMenu(false);
+      }
+    };
+
+    Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+      document.addEventListener("mousedown", handleClick);
+      return function () {
+        document.removeEventListener("mousedown", handleClick);
+      };
+    });
+  }
 
   var userMenu = function userMenu() {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "navbar__menu-logout"
+      className: "navbar__menu-logout",
+      ref: wrapperRef
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "navbar__menu-logout-p",
       onClick: logOut
