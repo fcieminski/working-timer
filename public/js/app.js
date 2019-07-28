@@ -70010,7 +70010,11 @@ var Root = function Root() {
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/signup",
-    component: _SignUp__WEBPACK_IMPORTED_MODULE_7__["default"]
+    render: function render(props) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SignUp__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, props, {
+        fetchUser: fetchUser
+      }));
+    }
   })), user ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/profile",
     render: function render(props) {
@@ -70212,14 +70216,14 @@ var SignUp = function SignUp(props) {
       error = _useState8[0],
       setError = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      home = _useState10[0],
-      setHome = _useState10[1];
-
   var makeAccount = function makeAccount(event) {
     event.preventDefault();
     register();
+  };
+
+  var isRegistered = function isRegistered() {
+    props.fetchUser();
+    props.history.push("/");
   };
 
   var register = function register() {
@@ -70230,7 +70234,7 @@ var SignUp = function SignUp(props) {
       password: password
     }, _defineProperty(_axios$post, "password", password), _defineProperty(_axios$post, "name", name), _axios$post)).then(function (response) {
       if (response.statusText === "OK") {
-        setHome("true");
+        isRegistered();
       } else {
         setError("Wystąpił błąd");
       }
@@ -70241,9 +70245,7 @@ var SignUp = function SignUp(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "signin__container"
-  }, home ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-    to: "/"
-  }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "container__form",
     onSubmit: makeAccount
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__["default"], {

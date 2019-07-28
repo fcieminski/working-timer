@@ -8,11 +8,15 @@ const SignUp = props => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
-    const [home, setHome] = useState(false);
 
     const makeAccount = event => {
         event.preventDefault();
         register();
+    };
+
+    const isRegistered = () => {
+        props.fetchUser();
+        props.history.push("/");
     };
 
     let register = () => {
@@ -25,7 +29,7 @@ const SignUp = props => {
             })
             .then(response => {
                 if (response.statusText === "OK") {
-                    setHome("true");
+                    isRegistered();
                 } else {
                     setError("Wystąpił błąd");
                 }
@@ -36,7 +40,6 @@ const SignUp = props => {
     return (
         <>
             <div className="signin__container">
-                {home ? <Redirect to="/" /> : null}
                 <form className="container__form" onSubmit={makeAccount}>
                     <TextField
                         placeholder="imię"

@@ -42,7 +42,12 @@ const Root = () => {
                             <SignIn {...props} fetchUser={fetchUser} />
                         )}
                     />
-                    <Route path="/signup" component={SignUp} />
+                    <Route
+                        path="/signup"
+                        render={props => (
+                            <SignUp {...props} fetchUser={fetchUser} />
+                        )}
+                    />
                 </>
             )}
             {user ? (
